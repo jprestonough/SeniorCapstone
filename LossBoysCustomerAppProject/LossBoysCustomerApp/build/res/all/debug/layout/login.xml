@@ -1,0 +1,29 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+        >
+
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+        <EditText android:id="@+id/username"
+                  android:layout_weight="1"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:hint="@string/username_input" />
+
+        <EditText android:id="@+id/password"
+                  android:layout_weight="1"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:hint="@string/password_input" />
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_login" />
+    </TableRow>
+
+</TableLayout>
