@@ -61,17 +61,6 @@
                       android:layout_marginTop="5dip"
                       android:layout_marginBottom="20dip"
                       android:singleLine="true"/>
-            <!--Username-->
-            <TextView android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:textColor="#929496"
-                      android:text="Username"/>
-            <EditText android:id="@+id/registerUsername"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_marginTop="5dip"
-                      android:layout_marginBottom="20dip"
-                      android:singleLine="true"/>
             <!--Password-->
             <TextView android:layout_height="wrap_content"
                       android:layout_width="fill_parent"

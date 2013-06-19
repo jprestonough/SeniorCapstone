@@ -28,11 +28,11 @@
             android:layout_width="match_parent"
             android:padding="10dip"
             android:layout_below="@id/header">
-            <!--Username-->
+            <!--Email-->
             <TextView android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
                       android:textColor="#929496"
-                      android:text="Username"/>
+                      android:text="Email"/>
             <EditText android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
                       android:layout_marginTop="5dip"

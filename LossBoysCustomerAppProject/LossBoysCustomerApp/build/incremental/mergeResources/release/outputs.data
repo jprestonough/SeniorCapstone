@@ -1,17 +1,16 @@
 # incremental data. DO NOT EDIT.
 # format is <lastModified> <length> <SHA-1> <path>
 # Encoding is UTF-8
-1371586055352 224 3bee0d9a6f0efbaf11495ad45fdeb8f71aee62e8 C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\values-v14\values.xml
-1371586055364 7721 39b0f5a0570da92f471225402ad0ea6de30bf2be C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\drawable-hdpi\ic_launcher.png
-1371586055360 130 90e37035f35f83953c491e73e930b7aea297a472 C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\values-sw720dp-land\values.xml
-1371623394072 4691 68f187be10a339f04f417a8d8bc1800af4e39f31 C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\layout\login.xml
 1371621647335 234 7dd7b47efb5341b7b13663bf6d96edab417612fa C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\layout\footer.xml
 1371621647329 393 11c5bc1ca917bd03dd55f560257df68bcecab026 C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\layout\header.xml
-1371623394066 6565 f6eb29581ee865ab13884311e5ee91421caa20a0 C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\layout\register.xml
+1371628915775 5977 6772399f13e3b556e617b4312cfb26cff764748d C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\layout\register.xml
 1371586055355 210 c41731f5631a90fa989588ef97e9476fc244b438 C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\values-v11\values.xml
-1371598530490 1147 59518670217722ec9766b599aebef72653b3e6f1 C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\layout\home.xml
+1371586055352 224 3bee0d9a6f0efbaf11495ad45fdeb8f71aee62e8 C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\values-v14\values.xml
 1371586055364 3769 eec07752d40e268ed7f4a1730acc77ab1e40aeb0 C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\drawable-mdpi\ic_launcher.png
 1371586055366 12329 a8301606e15d4b6dccdd775cc273cfc51a552645 C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\drawable-xhdpi\ic_launcher.png
 1371586055367 24654 696bbbc63d2250ef7d3373f2d602e604acd13d8c C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\drawable-xxhdpi\ic_launcher.png
+1371586055364 7721 39b0f5a0570da92f471225402ad0ea6de30bf2be C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\drawable-hdpi\ic_launcher.png
+1371586055360 130 90e37035f35f83953c491e73e930b7aea297a472 C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\values-sw720dp-land\values.xml
 1371596314719 1281 96f5ab974964dec13a71d7883ba72b3bfc3eb83e C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\values\values.xml
 1371586055371 244 045ff451db7cd8e61285502b8c9bbf7405f2078d C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\menu\main.xml
+1371628915777 4685 6ce7ca902b5f3f15ffbb2acb2854d8be12b138ac C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\all\release\layout\login.xml

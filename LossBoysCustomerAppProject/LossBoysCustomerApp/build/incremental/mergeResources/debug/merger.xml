@@ -64,27 +64,27 @@
             <file
                 path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\src\main\res\values\strings.xml"
                 qualifiers="" >
-                <string name="phone_input" >Phone Number
+                <string name="firstname_input" >First Name
                 </string>
                 <string name="lastname_input" >Last Name
                 </string>
-                <string name="firstname_input" >First Name
+                <string name="phone_input" >Phone Number
                 </string>
                 <string name="action_settings" >Settings
                 </string>
                 <string name="email_input" >Email Address
                 </string>
-                <string name="button_login" >Log In
-                </string>
                 <string name="home_title" >Customer App
+                </string>
+                <string name="button_login" >Log In
                 </string>
                 <string name="app_name" >LossBoys
                 </string>
                 <string name="username_input" >Username
                 </string>
-                <string name="password_input" >Password
-                </string>
                 <string name="login_title" >Log In
+                </string>
+                <string name="password_input" >Password
                 </string>
                 <string name="button_register" >Register
                 </string>
@@ -142,6 +142,11 @@
                     <!-- API 14 theme customizations can go here. -->
                 </style>
             </file>
+            <file
+                name="homeTMP"
+                path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\src\main\res\layout\homeTMP.txt"
+                qualifiers=""
+                type="layout" />
         </source>
         <source path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\rs\debug" />
     </dataSet>
