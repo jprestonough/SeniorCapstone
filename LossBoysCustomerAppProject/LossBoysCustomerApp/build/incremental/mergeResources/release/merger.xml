@@ -44,7 +44,15 @@
             <file
                 path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\src\main\res\values\strings.xml"
                 qualifiers="" >
+                <string name="phone_input" >Phone Number
+                </string>
+                <string name="lastname_input" >Last Name
+                </string>
+                <string name="firstname_input" >First Name
+                </string>
                 <string name="action_settings" >Settings
+                </string>
+                <string name="email_input" >Email Address
                 </string>
                 <string name="home_title" >Customer App
                 </string>
@@ -124,6 +132,21 @@
             <file
                 name="home"
                 path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\src\main\res\layout\home.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="register"
+                path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\src\main\res\layout\register.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="header"
+                path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\src\main\res\layout\header.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="footer"
+                path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\src\main\res\layout\footer.xml"
                 qualifiers=""
                 type="layout" />
         </source>

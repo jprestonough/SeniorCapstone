@@ -24,8 +24,28 @@
                 qualifiers="xxhdpi"
                 type="drawable" />
             <file
-                name="main"
-                path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\src\main\res\layout\main.xml"
+                name="footer"
+                path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\src\main\res\layout\footer.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="header"
+                path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\src\main\res\layout\header.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="home"
+                path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\src\main\res\layout\home.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="login"
+                path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\src\main\res\layout\login.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="register"
+                path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\src\main\res\layout\register.xml"
                 qualifiers=""
                 type="layout" />
             <file
@@ -44,21 +64,27 @@
             <file
                 path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\src\main\res\values\strings.xml"
                 qualifiers="" >
+                <string name="phone_input" >Phone Number
+                </string>
+                <string name="lastname_input" >Last Name
+                </string>
+                <string name="firstname_input" >First Name
+                </string>
                 <string name="action_settings" >Settings
                 </string>
-                <string name="home_title" >Customer App
+                <string name="email_input" >Email Address
                 </string>
                 <string name="button_login" >Log In
+                </string>
+                <string name="home_title" >Customer App
                 </string>
                 <string name="app_name" >LossBoys
                 </string>
                 <string name="username_input" >Username
                 </string>
-                <string name="login_title" >Log In
-                </string>
                 <string name="password_input" >Password
                 </string>
-                <string name="hello_world" >Hello world!
+                <string name="login_title" >Log In
                 </string>
                 <string name="button_register" >Register
                 </string>
@@ -116,16 +142,6 @@
                     <!-- API 14 theme customizations can go here. -->
                 </style>
             </file>
-            <file
-                name="login"
-                path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\src\main\res\layout\login.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="home"
-                path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\src\main\res\layout\home.xml"
-                qualifiers=""
-                type="layout" />
         </source>
         <source path="C:\Users\Jennifer\Desktop\will\DEVELOPMENT\Android Studio\Projects\LossBoysCustomerAppProject\LossBoysCustomerApp\build\res\rs\debug" />
     </dataSet>

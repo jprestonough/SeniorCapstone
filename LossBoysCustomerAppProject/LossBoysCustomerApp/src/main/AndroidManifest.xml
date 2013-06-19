@@ -13,23 +13,23 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name="com.lossboys.customerapp.CustomerHome"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+        <activity
+                android:name=".CustomerLogin"
+                android:label="@string/login_title"
+                android:parentActivityName=".customerapp">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <!--<meta-data-->
+                <!--android:name="android.support.PARENT_ACTIVITY"-->
+                <!--android:value="com.lossboys.customerapp.CustomerHome" />-->
         </activity>
 
-        <activity
-                android:name="com.lossboys.customerapp.CustomerLogin"
-                android:label="@string/login_title"
-                android:parentActivityName="com.lossboys.customerapp">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.lossboys.customerapp.CustomerHome" />
+        <!--CustomerRegister.class-->
+        <activity android:name=".CustomerRegister"
+                  android:label="Register">
         </activity>
 
     </application>
