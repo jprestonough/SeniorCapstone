@@ -22,6 +22,10 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -109,40 +113,28 @@ public class CustomerLogin extends Activity {
 			public void onClick(View view) {
 				String email = inputEmail.getText().toString();
                 String password = inputPassword.getText().toString();
-                
-                // Creating HTTP client
-                HttpClient httpClient = new DefaultHttpClient();
-                // Creating HTTP Post
-                HttpPost httpPost = new HttpPost("http://23.21.158.161:4912/login.php");
-         
+
                 // Building post parameters
                 // key and value pair
                 List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
                 nameValuePair.add(new BasicNameValuePair("email", email));
                 nameValuePair.add(new BasicNameValuePair("password",password));
+                
+                JSONObject loginJSON = CustomHTTP.makePOST("http://23.21.158.161:4912/login.php", nameValuePair);
          
-                // Url Encoding the POST parameters
-                try {
-                    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
-                } catch (UnsupportedEncodingException e) {
-                    // writing error to Log
-                    e.printStackTrace();
-                }
-         
-                // Making HTTP Request
-                try {
-                    HttpResponse response = httpClient.execute(httpPost);
-                    String result = EntityUtils.toString(response.getEntity());
-                    // writing response to log
-                    Log.d("Http Response: ", result);
-                    
-                } catch (ClientProtocolException e) {
-                    // writing exception to log
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    // writing exception to log
-                    e.printStackTrace();
-                }
+                if(loginJSON != null){
+    				try {
+    					String jsonResult = loginJSON.getString("login");
+        				if(jsonResult.equals("false"))
+        					loginErrorMsg.setText("Invalid email or password!");
+        				else
+        					loginErrorMsg.setText("Login successful");
+    				} catch (JSONException e) {
+    					e.printStackTrace();
+    					loginErrorMsg.setText("Login successful");
+    				}
+                } else
+					loginErrorMsg.setText("Login successful");
 			}
 		});
         
