@@ -128,8 +128,13 @@ public class CustomerLogin extends Activity {
     					String jsonResult = loginJSON.getString("login");
         				if(jsonResult.equals("false"))
         					loginErrorMsg.setText("Invalid email or password!");
-        				else
-        					loginErrorMsg.setText("Login successful.");
+        				else{
+        					//loginErrorMsg.setText("Login successful.");
+        					Intent i = new Intent(getApplicationContext(),
+        	                        CustomerRegister.class);
+        	                startActivity(i);
+        	                finish();
+        				}
     				} catch (JSONException e) {
     					e.printStackTrace();
     					loginErrorMsg.setText("Login failed.");

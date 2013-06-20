@@ -14,10 +14,8 @@ import com.lossboys.customerapp.CustomerLogin;
 import com.lossboys.customerapp.R;
 import com.lossboys.customerapp.R.id;
 import com.lossboys.customerapp.R.layout;
-import com.lossboys.customerapp.library.UserFunctions;
 
 public class CustomerDashboard extends Activity {
-	UserFunctions userFunctions;
 	Button btnLogout;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,9 +24,7 @@ public class CustomerDashboard extends Activity {
         /**
          * Dashboard Screen for the application
          * */        
-        // Check login status in database
-        userFunctions = new UserFunctions();
-        if(userFunctions.isUserLoggedIn(getApplicationContext())){
+        if(true){
         	setContentView(R.layout.dashboard_layout);
         	
         	/**
