@@ -12,6 +12,23 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.HashMap;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.lossboys.customerapp.library.DatabaseHandler;
+import com.lossboys.customerapp.library.UserFunctions;
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -19,6 +36,22 @@ import android.widget.TextView;
  * @see SystemUiHider
  */
 public class CustomerLogin extends Activity {
+	
+	Button btnLogin;
+    Button btnLinkToRegister;
+    EditText inputEmail;
+    EditText inputPassword;
+    TextView loginErrorMsg;
+ 
+    // JSON Response node names
+    private static String KEY_SUCCESS = "success";
+    private static String KEY_ERROR = "error";
+    private static String KEY_ERROR_MSG = "error_msg";
+    private static String KEY_UID = "uid";
+    private static String KEY_NAME = "name";
+    private static String KEY_EMAIL = "email";
+    private static String KEY_CREATED_AT = "created_at";
+	
 	/**
 	 * Whether or not the system UI should be auto-hidden after
 	 * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -53,7 +86,14 @@ public class CustomerLogin extends Activity {
 
 		setContentView(R.layout.customer_login);
 		
-		TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
+		// Importing all assets like buttons, text fields
+        inputEmail = (EditText) findViewById(R.id.loginEmail);
+        inputPassword = (EditText) findViewById(R.id.loginPassword);
+        btnLogin = (Button) findViewById(R.id.btnLogin);
+        btnLinkToRegister = (Button) findViewById(R.id.btnLinkToRegisterScreen);
+        loginErrorMsg = (TextView) findViewById(R.id.login_error);
+		
+		//TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
 
 //		final View controlsView = findViewById(R.id.fullscreen_content_controls);
 //		final View contentView = findViewById(R.id.fullscreen_content);
@@ -104,11 +144,48 @@ public class CustomerLogin extends Activity {
 //				});
 
 		// Set up the user interaction to manually show or hide the system UI.
-		registerScreen.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
+				String email = inputEmail.getText().toString();
+                String password = inputPassword.getText().toString();
+                UserFunctions userFunction = new UserFunctions();
+                JSONObject json = userFunction.loginUser(email, password);
 				Intent i = new Intent(getApplicationContext(), CustomerRegister.class);
-                startActivity(i); 
+				
+				// check for login response
+                try {
+                    if (json.getString(KEY_SUCCESS) != null) {
+                        loginErrorMsg.setText("");
+                        String res = json.getString(KEY_SUCCESS); 
+                        if(Integer.parseInt(res) == 1){
+                            // user successfully logged in
+                            // Store user details in SQLite Database
+                            DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+                            JSONObject json_user = json.getJSONObject("user");
+                             
+                            // Clear all previous data in database
+                            userFunction.logoutUser(getApplicationContext());
+                            db.addUser(json_user.getString(KEY_NAME), json_user.getString(KEY_EMAIL), json.getString(KEY_UID), json_user.getString(KEY_CREATED_AT));                        
+                             
+                            // Launch Dashboard Screen
+                            Intent dashboard = new Intent(getApplicationContext(), CustomerDashboard.class);
+                             
+                            // Close all views before launching Dashboard
+                            dashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(dashboard);
+                             
+                            // Close Login Screen
+                            finish();
+                        }else{
+                            // Error in login
+                            loginErrorMsg.setText("Incorrect username/password");
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+//                startActivity(i); 
 //				if (TOGGLE_ON_CLICK) {
 //					mSystemUiHider.toggle();
 //				} else {
@@ -116,6 +193,16 @@ public class CustomerLogin extends Activity {
 //				}
 			}
 		});
+        
+        btnLinkToRegister.setOnClickListener(new View.OnClickListener() {
+        	 
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),
+                        CustomerRegister.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
 		// Upon interacting with UI controls, delay any scheduled hide()
 		// operations to prevent the jarring behavior of controls going away

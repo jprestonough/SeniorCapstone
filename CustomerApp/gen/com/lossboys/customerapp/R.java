@@ -25,20 +25,26 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int btnLogin=0x7f070001;
-        public static final int btnRegister=0x7f070007;
+        public static final int btnLinkToLoginScreen=0x7f07000c;
+        public static final int btnLinkToRegisterScreen=0x7f070005;
+        public static final int btnLogin=0x7f070004;
+        public static final int btnLogout=0x7f07000d;
+        public static final int btnRegister=0x7f07000b;
         public static final int header=0x7f070000;
-        public static final int link_to_login=0x7f070008;
-        public static final int link_to_register=0x7f070002;
-        public static final int reg_email=0x7f070005;
-        public static final int reg_firstname=0x7f070003;
-        public static final int reg_lastname=0x7f070004;
-        public static final int reg_password=0x7f070006;
+        public static final int loginEmail=0x7f070001;
+        public static final int loginPassword=0x7f070002;
+        public static final int login_error=0x7f070003;
+        public static final int reg_email=0x7f070008;
+        public static final int reg_firstname=0x7f070006;
+        public static final int reg_lastname=0x7f070007;
+        public static final int reg_password=0x7f070009;
+        public static final int register_error=0x7f07000a;
     }
     public static final class layout {
         public static final int customer_login=0x7f030000;
         public static final int customer_register=0x7f030001;
-        public static final int header_gradient=0x7f030002;
+        public static final int dashboard=0x7f030002;
+        public static final int header_gradient=0x7f030003;
     }
     public static final class string {
         public static final int app_name=0x7f050000;

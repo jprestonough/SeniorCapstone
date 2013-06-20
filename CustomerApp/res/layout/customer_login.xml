@@ -40,6 +40,7 @@
                 android:text="Email"/>
           <EditText android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/loginEmail"
                 android:layout_marginTop="5dip"
                 android:layout_marginBottom="20dip"
                 android:singleLine="true"/>
@@ -50,25 +51,35 @@
                 android:text="Password"/>
           <EditText android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/loginPassword"
                 android:layout_marginTop="5dip"
                 android:singleLine="true"
                 android:password="true"/>
+          
+          <!--  Error message -->
+        <TextView android:id="@+id/login_error"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#e30000"
+                    android:padding="10dip"
+                    android:textStyle="bold"/>
           <!-- Login button -->
 
           <Button
               android:id="@+id/btnLogin"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:layout_marginTop="10dip"
+              android:layout_marginTop="20dip"
               android:text="Login"
               android:textColor="#ffffff" />
 
           <!-- Link to Registration Screen -->
-          <TextView android:id="@+id/link_to_register"
+          <Button android:id="@+id/btnLinkToRegisterScreen"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dip"
                 android:layout_marginBottom="40dip"
+                android:background="@null"
                 android:text="New to our App? Register here!"
                 android:gravity="center"
                 android:textSize="20dip"

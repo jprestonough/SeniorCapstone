@@ -76,26 +76,35 @@
                 android:password="true"
                 android:singleLine="true"
                 android:layout_marginTop="5dip"/>
+          
+          <!--  Error message -->
+        <TextView android:id="@+id/register_error"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#e30000"
+                    android:padding="10dip"
+                    android:textStyle="bold"/>
+        
           <!-- Register Button -->
 
           <Button
               android:id="@+id/btnRegister"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:layout_marginTop="10dip"
+              android:layout_marginTop="20dip"
               android:text="Register"
               android:textColor="#ffffff" />
 
-          <!-- Link to Login Screen -->
-          <TextView android:id="@+id/link_to_login"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dip"
-                android:layout_marginBottom="40dip"
-                android:text="Have an account? Login here!"
-                android:gravity="center"
-                android:textSize="20dip"
-                android:textColor="#ffffff"/>
+          <!--  Link to Login Screen -->
+        <Button
+            android:id="@+id/btnLinkToLoginScreen"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dip"
+            android:background="@null"
+            android:text="Have an account? Login here!"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
  
         </LinearLayout>
         <!-- Registration Form Ends -->
