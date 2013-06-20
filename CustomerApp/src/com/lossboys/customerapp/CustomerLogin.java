@@ -2,32 +2,29 @@ package com.lossboys.customerapp;
 
 import com.lossboys.customerapp.util.SystemUiHider;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.HashMap;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-
-import com.lossboys.customerapp.library.DatabaseHandler;
-import com.lossboys.customerapp.library.UserFunctions;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -43,44 +40,7 @@ public class CustomerLogin extends Activity {
     EditText inputPassword;
     TextView loginErrorMsg;
  
-    // JSON Response node names
-    private static String KEY_SUCCESS = "success";
-    private static String KEY_ERROR = "error";
-    private static String KEY_ERROR_MSG = "error_msg";
-    private static String KEY_UID = "uid";
-    private static String KEY_NAME = "name";
-    private static String KEY_EMAIL = "email";
-    private static String KEY_CREATED_AT = "created_at";
-	
-	/**
-	 * Whether or not the system UI should be auto-hidden after
-	 * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
-	 */
-	private static final boolean AUTO_HIDE = true;
-
-	/**
-	 * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
-	 * user interaction before hiding the system UI.
-	 */
-	private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
-
-	/**
-	 * If set, will toggle the system UI visibility upon interaction. Otherwise,
-	 * will show the system UI visibility upon interaction.
-	 */
-	private static final boolean TOGGLE_ON_CLICK = true;
-
-	/**
-	 * The flags to pass to {@link SystemUiHider#getInstance}.
-	 */
-	private static final int HIDER_FLAGS = SystemUiHider.FLAG_HIDE_NAVIGATION;
-
-	/**
-	 * The instance of the {@link SystemUiHider} for this activity.
-	 */
-	private SystemUiHider mSystemUiHider;
-
-	@Override
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
@@ -149,48 +109,40 @@ public class CustomerLogin extends Activity {
 			public void onClick(View view) {
 				String email = inputEmail.getText().toString();
                 String password = inputPassword.getText().toString();
-                UserFunctions userFunction = new UserFunctions();
-                JSONObject json = userFunction.loginUser(email, password);
-				Intent i = new Intent(getApplicationContext(), CustomerRegister.class);
-				
-				// check for login response
+                
+                // Creating HTTP client
+                HttpClient httpClient = new DefaultHttpClient();
+                // Creating HTTP Post
+                HttpPost httpPost = new HttpPost("http://23.21.158.161:4912/login.php");
+         
+                // Building post parameters
+                // key and value pair
+                List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
+                nameValuePair.add(new BasicNameValuePair("email", email));
+                nameValuePair.add(new BasicNameValuePair("password",password));
+         
+                // Url Encoding the POST parameters
                 try {
-                    if (json.getString(KEY_SUCCESS) != null) {
-                        loginErrorMsg.setText("");
-                        String res = json.getString(KEY_SUCCESS); 
-                        if(Integer.parseInt(res) == 1){
-                            // user successfully logged in
-                            // Store user details in SQLite Database
-                            DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-                            JSONObject json_user = json.getJSONObject("user");
-                             
-                            // Clear all previous data in database
-                            userFunction.logoutUser(getApplicationContext());
-                            db.addUser(json_user.getString(KEY_NAME), json_user.getString(KEY_EMAIL), json.getString(KEY_UID), json_user.getString(KEY_CREATED_AT));                        
-                             
-                            // Launch Dashboard Screen
-                            Intent dashboard = new Intent(getApplicationContext(), CustomerDashboard.class);
-                             
-                            // Close all views before launching Dashboard
-                            dashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(dashboard);
-                             
-                            // Close Login Screen
-                            finish();
-                        }else{
-                            // Error in login
-                            loginErrorMsg.setText("Incorrect username/password");
-                        }
-                    }
-                } catch (JSONException e) {
+                    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+                } catch (UnsupportedEncodingException e) {
+                    // writing error to Log
                     e.printStackTrace();
                 }
-//                startActivity(i); 
-//				if (TOGGLE_ON_CLICK) {
-//					mSystemUiHider.toggle();
-//				} else {
-//					mSystemUiHider.show();
-//				}
+         
+                // Making HTTP Request
+                try {
+                    HttpResponse response = httpClient.execute(httpPost);
+                    String result = EntityUtils.toString(response.getEntity());
+                    // writing response to log
+                    Log.d("Http Response: ", result);
+                    
+                } catch (ClientProtocolException e) {
+                    // writing exception to log
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // writing exception to log
+                    e.printStackTrace();
+                }
 			}
 		});
         
