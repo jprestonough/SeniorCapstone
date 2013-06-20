@@ -128,13 +128,13 @@ public class CustomerLogin extends Activity {
         				if(jsonResult.equals("false"))
         					loginErrorMsg.setText("Invalid email or password!");
         				else
-        					loginErrorMsg.setText("Login successful");
+        					loginErrorMsg.setText("Login successful.");
     				} catch (JSONException e) {
     					e.printStackTrace();
-    					loginErrorMsg.setText("Login successful");
+    					loginErrorMsg.setText("Login failed.");
     				}
                 } else
-					loginErrorMsg.setText("Login successful");
+					loginErrorMsg.setText("Login failed.");
 			}
 		});
         
