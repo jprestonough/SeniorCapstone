@@ -129,9 +129,8 @@ public class CustomerLogin extends Activity {
         				if(jsonResult.equals("false"))
         					loginErrorMsg.setText("Invalid email or password!");
         				else{
-        					//loginErrorMsg.setText("Login successful.");
         					Intent i = new Intent(getApplicationContext(),
-        	                        CustomerRegister.class);
+        	                        com.lossboys.customerapp.dashboard.CustomerDashboard.class);
         	                startActivity(i);
         	                finish();
         				}
