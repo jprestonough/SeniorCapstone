@@ -47,7 +47,7 @@
         <activity android:name="com.lossboys.customerapp.dashboard.NewsFeedActivity" ></activity>
   
         <!-- Messages Activity -->
-        <activity android:name="com.lossboys.customerapp.dashboard.MessagesActivity" ></activity>
+        <activity android:name="com.lossboys.customerapp.dashboard.CartActivity" ></activity>
  
         <!-- Places Activity -->
         <activity android:name="com.lossboys.customerapp.dashboard.PlacesActivity" ></activity>

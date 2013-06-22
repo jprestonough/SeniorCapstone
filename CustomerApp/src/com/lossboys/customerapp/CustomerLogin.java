@@ -24,8 +24,6 @@ public class CustomerLogin extends Activity {
     EditText inputEmail;
     EditText inputPassword;
     TextView loginErrorMsg;
-    
-    boolean disableLogin = false;
  
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +41,7 @@ public class CustomerLogin extends Activity {
         if(checkJSON != null){
 			try {
 				String jsonResult = checkJSON.getString("login");
-				if(jsonResult.equals("true") || disableLogin){
+				if(jsonResult.equals("true")){
 					Intent i = new Intent(getApplicationContext(),
 		                    com.lossboys.customerapp.dashboard.CustomerDashboard.class);
 		            startActivity(i);

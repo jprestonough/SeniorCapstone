@@ -34,7 +34,7 @@ public class CustomerDashboard extends Activity {
 		Button btn_scan = (Button) findViewById(R.id.btn_scan);
 
 		// Dashboard Messages button
-		Button btn_messages = (Button) findViewById(R.id.btn_messages);
+		Button btn_cart = (Button) findViewById(R.id.btn_cart);
 
 		// Dashboard Places button
 		Button btn_places = (Button) findViewById(R.id.btn_places);
@@ -45,7 +45,6 @@ public class CustomerDashboard extends Activity {
 		// Dashboard Photos button
 		Button btn_photos = (Button) findViewById(R.id.btn_photos);
 
-		btn_messages.setVisibility(View.INVISIBLE);
 		btn_places.setVisibility(View.INVISIBLE);
 		btn_events.setVisibility(View.INVISIBLE);
 		btn_photos.setVisibility(View.INVISIBLE);
@@ -79,13 +78,13 @@ public class CustomerDashboard extends Activity {
 		});
 
 		// Listening Messages button click
-		btn_messages.setOnClickListener(new View.OnClickListener() {
+		btn_cart.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
 				// Launching News Feed Screen
 				Intent i = new Intent(getApplicationContext(),
-						MessagesActivity.class);
+						CartActivity.class);
 				startActivity(i);
 			}
 		});

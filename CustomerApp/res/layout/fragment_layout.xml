@@ -13,7 +13,7 @@
         android:text="Scan Item"
         android:textColor="#ffffff" />
 
-    <!-- News Feed Button -->
+    <!-- Logout Button -->
 
     <Button
         android:id="@+id/btn_logout"
@@ -22,13 +22,13 @@
         android:text="Logout"
         android:textColor="#ffffff" />
 
-    <!-- Messages Button -->
+    <!-- Cart Button -->
 
     <Button
-        android:id="@+id/btn_messages"
+        android:id="@+id/btn_cart"
         style="@style/DashboardButton"
-        android:drawableTop="@drawable/btn_messages"
-        android:text="Messages"
+        android:drawableTop="@drawable/btn_cart"
+        android:text="Cart"
         android:textColor="#ffffff" />
 
     <!-- Places Button -->
