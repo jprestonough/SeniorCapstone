@@ -3,6 +3,7 @@ package com.lossboys.customerapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.TextView;
 
@@ -28,6 +29,12 @@ public class CustomerLogin extends Activity {
  
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
+    	
+    	 if (android.os.Build.VERSION.SDK_INT > 9) {
+    	     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+    	     StrictMode.setThreadPolicy(policy);
+    	   }
+    	
 		super.onCreate(savedInstanceState);
 
 		if(disableLogin){
