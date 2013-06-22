@@ -8,6 +8,9 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
 
+    <!-- Allow to connect with internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -42,10 +45,7 @@
         
         <!-- News Feed Activity -->
         <activity android:name="com.lossboys.customerapp.dashboard.NewsFeedActivity" ></activity>
- 
-        <!-- Friends Activity -->
-        <activity android:name="com.lossboys.customerapp.dashboard.FriendsActivity" ></activity>
- 
+  
         <!-- Messages Activity -->
         <activity android:name="com.lossboys.customerapp.dashboard.MessagesActivity" ></activity>
  
@@ -58,8 +58,11 @@
         <!-- Photos Activity -->
         <activity android:name="com.lossboys.customerapp.dashboard.PhotosActivity" ></activity>
         
+        <!-- Product Activity -->
+        <activity android:name="com.lossboys.customerapp.dashboard.ProductActivity" ></activity>
+        
+        <!-- Scan Activity -->
+        <activity android:name="com.lossboys.customerapp.dashboard.ScanActivity" ></activity>
+        
     </application>
-    <!-- Allow to connect with internet -->
-    <uses-permission android:name="android.permission.INTERNET" />
-
 </manifest>

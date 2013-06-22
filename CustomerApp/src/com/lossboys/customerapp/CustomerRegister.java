@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -69,7 +68,7 @@ public class CustomerRegister extends Activity {
         					registerErrorMsg.setText("Email is already registered.");
         				else
         					registerErrorMsg.setText("Register successful.");
-    				} catch (JSONException e) {
+    				} catch (Exception e) {
     					e.printStackTrace();
     					registerErrorMsg.setText("Register failed.");
     				}
