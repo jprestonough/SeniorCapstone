@@ -37,12 +37,23 @@ public class CustomerLogin extends Activity {
     	
 		super.onCreate(savedInstanceState);
 
-		if(disableLogin){
-			Intent i = new Intent(getApplicationContext(),
-                    com.lossboys.customerapp.dashboard.CustomerDashboard.class);
-            startActivity(i);
-            finish();
-		}
+		// Check to see if already logged in
+		List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(0);
+        JSONObject checkJSON = CustomHTTP.makePOST("http://23.21.158.161:4912/check_login.php", nameValuePair);
+        if(checkJSON != null){
+			try {
+				String jsonResult = checkJSON.getString("login");
+				if(jsonResult.equals("true") || disableLogin){
+					Intent i = new Intent(getApplicationContext(),
+		                    com.lossboys.customerapp.dashboard.CustomerDashboard.class);
+		            startActivity(i);
+		            finish();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+        }
+
 		setContentView(R.layout.customer_login);
 		
 		// Importing all assets like buttons, text fields

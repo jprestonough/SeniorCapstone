@@ -1,10 +1,18 @@
 package com.lossboys.customerapp.dashboard;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.lossboys.customerapp.CustomHTTP;
 import com.lossboys.customerapp.R;
 
 public class CustomerDashboard extends Activity {
@@ -20,7 +28,7 @@ public class CustomerDashboard extends Activity {
 		 * Creating all buttons instances
 		 * */
 		// Dashboard News feed button
-		Button btn_newsfeed = (Button) findViewById(R.id.btn_news_feed);
+		Button btn_logout = (Button) findViewById(R.id.btn_logout);
 
 		// Dashboard Friends button
 		Button btn_scan = (Button) findViewById(R.id.btn_scan);
@@ -37,7 +45,6 @@ public class CustomerDashboard extends Activity {
 		// Dashboard Photos button
 		Button btn_photos = (Button) findViewById(R.id.btn_photos);
 
-		btn_newsfeed.setVisibility(View.INVISIBLE);
 		btn_messages.setVisibility(View.INVISIBLE);
 		btn_places.setVisibility(View.INVISIBLE);
 		btn_events.setVisibility(View.INVISIBLE);
@@ -47,14 +54,15 @@ public class CustomerDashboard extends Activity {
 		 * Handling all button click events
 		 * */
 
-		// Listening to News Feed button click
-		btn_newsfeed.setOnClickListener(new View.OnClickListener() {
+		btn_logout.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				// Launching News Feed Screen
+				List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(0);
+		        CustomHTTP.makePOST("http://23.21.158.161:4912/logout.php", nameValuePair);
 				Intent i = new Intent(getApplicationContext(),
-						NewsFeedActivity.class);
-				startActivity(i);
+	                    com.lossboys.customerapp.CustomerLogin.class);
+	            startActivity(i);
+	            finish();
 			}
 		});
 

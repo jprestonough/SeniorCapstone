@@ -37,7 +37,6 @@ public class ProductActivity extends Activity {
         URL url;
 		try {
 			url = new URL("http://23.21.158.161:4912/item_images/"+getIntent().getStringExtra("ItemID")+".jpg");
-			Log.d("product","http://23.21.158.161:4912/item_images/"+getIntent().getStringExtra("ItemID")+".jpg");
 			Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
 			itemImage.setImageBitmap(bmp);
 		} catch (Exception e) {

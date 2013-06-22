@@ -7,17 +7,29 @@ import java.util.List;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.net.http.AndroidHttpClient;
+import android.util.Log;
+
 public class CustomHTTP {
+	private static CookieStore cookieStore = new BasicCookieStore();
+	private static HttpContext localContext = new BasicHttpContext();
+    	
 	public static JSONObject makePOST(String url,List<NameValuePair> nameValuePair){
+		localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
         // Creating HTTP client
         HttpClient httpClient = new DefaultHttpClient();
         // Creating HTTP Post
@@ -33,7 +45,8 @@ public class CustomHTTP {
  
         // Making HTTP Request
         try {
-            HttpResponse response = httpClient.execute(httpPost);
+            HttpResponse response = httpClient.execute(httpPost,localContext);
+            Log.d("cookie",cookieStore.toString());
             String result = EntityUtils.toString(response.getEntity());
             
             // Writing response to log
