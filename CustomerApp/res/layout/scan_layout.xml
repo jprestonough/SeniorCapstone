@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:fillViewport="true">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#336699"
+    android:orientation="vertical">
+
+    <include layout="@layout/actionbar_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dip" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dip"
+            android:text="Scan Screen"
+            android:textColor="#ffffff"
+            android:textSize="25dip"
+            android:textStyle="bold" />
+        
+            !--  ItemID Label -->
+          <TextView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="Item ID"/>
+          <EditText android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ItemIdField"
+                android:layout_marginTop="5dip"
+                android:layout_marginBottom="20dip"
+                android:singleLine="true"/>
+                    <!--  Error message -->
+        <TextView android:id="@+id/scan_error"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#e30000"
+                    android:padding="10dip"
+                    android:textStyle="bold"/>
+          <Button
+              android:id="@+id/btnItemID"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="5dip"
+              android:text="Search Item"
+              android:textColor="#ffffff" />
+    </LinearLayout>
+    
+
+</LinearLayout>
+</ScrollView>
