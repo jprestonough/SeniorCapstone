@@ -7,7 +7,7 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#336699"
+    android:background="@color/black"
     android:orientation="vertical">
     
     <FrameLayout 
@@ -20,13 +20,15 @@
     <TextView
 	    android:id="@+id/scanText"
 	    android:text="Scanning..."
+	    android:textColor="@color/white"
 	    android:layout_height="wrap_content" 
 	    android:layout_width="match_parent">
   	</TextView>
   	
   	<Button
 	    android:id="@+id/ScanButton"
-	    android:text="Scan Item"
+	    android:text="Reset Scan"
+	    android:textColor="@color/white"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_gravity="center"
