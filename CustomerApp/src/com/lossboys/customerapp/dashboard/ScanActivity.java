@@ -74,9 +74,9 @@ public class ScanActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.scan_layout);
+        setContentView(R.layout.scan_layout);
         
-        setContentView(R.layout.customer_camera);
+        //setContentView(R.layout.customer_camera);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         
         autoFocusHandler = new Handler();
