@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:padding="10dip"
-        android:textColor="#ffffff"
+        android:textColor="@color/bg"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -22,14 +22,14 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:padding="10dip"
-            android:textColor="#ffffff" />
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/cartPrice"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:padding="10dip"
-            android:textColor="#ffffff" />
+            android:textColor="#000000" />
     </LinearLayout>
 
 </LinearLayout>

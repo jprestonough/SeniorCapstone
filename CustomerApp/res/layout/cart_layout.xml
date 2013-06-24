@@ -2,21 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f8f9fe"
     android:orientation="vertical" >
-
-    <include layout="@layout/actionbar_layout" />
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/cartTotalLayout"
-        android:background="@color/bg" />
+        android:layout_below="@id/banner"
+        android:background="@color/white" />
 
+    <include layout="@layout/actionbar_layout" />
+    
     <LinearLayout
-        android:id="@+id/cartTotalLayout"
-        style="@style/FooterBar"
+        android:id="@id/cartTotalLayout"
+        style="@style/CartFooter"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true" >
 
@@ -27,7 +27,7 @@
             android:gravity="center"
             android:paddingTop="10dip"
             android:text="Total: $432.2"
-            android:textColor="#606060" />
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </RelativeLayout>
