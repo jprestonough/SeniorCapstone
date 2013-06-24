@@ -7,18 +7,12 @@
 
     <include layout="@layout/actionbar_layout" />
 
-    <ScrollView
+    <ListView
+        android:id="@android:id/list"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/cartTotalLayout"
-        android:background="@color/bg"
-		android:fillViewport="true">
-
-        <ListView
-            android:id="@android:id/list"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
-    </ScrollView>
+        android:background="@color/bg" />
 
     <LinearLayout
         android:id="@+id/cartTotalLayout"
@@ -30,9 +24,9 @@
             android:id="@+id/cartTotal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:paddingTop="10dip"
             android:text="Total: $432.2"
-            android:gravity="center"
             android:textColor="#606060" />
     </LinearLayout>
 
