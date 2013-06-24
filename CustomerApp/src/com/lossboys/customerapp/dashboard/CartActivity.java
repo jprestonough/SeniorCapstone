@@ -13,23 +13,20 @@ import org.json.JSONObject;
 
 import com.lossboys.customerapp.CustomHTTP;
 import com.lossboys.customerapp.R;
-import android.app.Activity;
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.EditText;
 
 public class CartActivity extends ListActivity {
 	TextView totalView;
@@ -54,10 +51,10 @@ public class CartActivity extends ListActivity {
 
 		setListAdapter(adapter);
 	}
-	
-	private void updateCart(){
+
+	private void updateCart() {
 		itemList.clear();
-		
+
 		List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(1);
 		nameValuePair.add(new BasicNameValuePair("function", "check_cart"));
 
@@ -92,70 +89,102 @@ public class CartActivity extends ListActivity {
 		totalView.setText("Total: $" + df.format(total));
 	}
 
-	protected void onListItemClick(ListView list, View view, int position, long id) {
-		//String selection = list.getItemAtPosition(position).toString();
-		HashMap<String, String> item = (HashMap<String, String>)list.getItemAtPosition(position);
+	protected void onListItemClick(ListView list, View view, int position,
+			long id) {
+		// String selection = list.getItemAtPosition(position).toString();
+		HashMap<String, String> item = (HashMap<String, String>) list
+				.getItemAtPosition(position);
 
-		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CartActivity.this);
-		 
-		LayoutInflater inflater = this.getLayoutInflater();
-		View v = inflater.inflate(R.layout.cartdialog_layout,null);
-		((TextView) v.findViewById(R.id.dialogItemID)).setText(item.get("ItemID"));
+		final Dialog itemDialog = new Dialog(CartActivity.this);
+		itemDialog.setContentView(R.layout.cartdialog_layout);
+		itemDialog.setTitle(item.get("Name"));
 		
-		alertDialogBuilder.setView(v);
-		
-		alertDialogBuilder.setTitle(item.get("Name"));
-		
-		alertDialogBuilder
-			.setMessage("Enter quantity: ")
-			.setCancelable(false)
-			.setPositiveButton("Update cart",new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog,int id) {
-					AlertDialog adialog = (AlertDialog) dialog;
-					List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(3);
-	                nameValuePair.add(new BasicNameValuePair("function","modify_cart"));
-	                nameValuePair.add(new BasicNameValuePair("itemid", ((TextView)adialog.findViewById(R.id.dialogItemID)).getText().toString()));
-	                nameValuePair.add(new BasicNameValuePair("quantity",((TextView)adialog.findViewById(R.id.dialogQuantity)).getText().toString()));
-	                
-	                JSONObject resultJSON = CustomHTTP.makePOST("http://23.21.158.161:4912/cart.php", nameValuePair);
-	                
-	                Context context = getApplicationContext();
-	                CharSequence text;
-	                int duration = Toast.LENGTH_SHORT;
+		((TextView) itemDialog.findViewById(R.id.dialogItemID)).setText(item
+				.get("ItemID"));
 
-	                if(resultJSON != null){
-	    				try {
-	    					String jsonResult = resultJSON.getString("error");
-	        				if(jsonResult.equals("true"))
-	        					text = "Add to cart failed.";
-	        				else
-	        					text = "Add to cart succeeded.";
-	    				} catch (Exception e) {
-	    					e.printStackTrace();
-	    					text = "Add to cart failed.";
-	    				}
-	                } else
-	                	text = "Add to cart failed.";
-	                
-	                Toast toast = Toast.makeText(context, text, duration);
-	                LinearLayout toastLayout = (LinearLayout) toast.getView();
-	                TextView toastTV = (TextView) toastLayout.getChildAt(0);
-	                toastTV.setTextSize(20);
-	                toast.setGravity(Gravity.CENTER, 0, 0);
-	                toast.show();
-	                updateCart();
-				}
-			  })
-			.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog,int id) {
-					// if this button is clicked, just close
-					// the dialog box and do nothing
-						dialog.cancel();
+		Button update = (Button) itemDialog.findViewById(R.id.dialogButtonUpdate);
+		Button remove = (Button) itemDialog.findViewById(R.id.dialogButtonRemove);
+		Button cancel = (Button) itemDialog.findViewById(R.id.dialogButtonCancel);
+
+		update.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(3);
+				nameValuePair.add(new BasicNameValuePair("function", "modify_cart"));
+				nameValuePair.add(new BasicNameValuePair("itemid",((TextView) itemDialog.findViewById(R.id.dialogItemID)).getText().toString()));
+				nameValuePair.add(new BasicNameValuePair("quantity",((TextView) itemDialog.findViewById(R.id.dialogQuantity)).getText().toString()));
+	
+				JSONObject resultJSON = CustomHTTP.makePOST("http://23.21.158.161:4912/cart.php",nameValuePair);
+	
+				Context context = CartActivity.this;
+				CharSequence text;
+				int duration = Toast.LENGTH_SHORT;
+	
+				if (resultJSON != null) {
+					try {
+						String jsonResult = resultJSON.getString("error");
+						if (jsonResult.equals("true"))
+							text = "Update failed.";
+						else
+							text = "Update succeeded.";
+					} catch (Exception e) {
+						e.printStackTrace();
+						text = "Update failed.";
 					}
-				});
- 
-		AlertDialog alertDialog = alertDialogBuilder.create();
-		
-		alertDialog.show();
+				} else
+					text = "Update failed.";
+	
+				Toast toast = Toast.makeText(context, text,duration);
+				LinearLayout toastLayout = (LinearLayout) toast.getView();
+				TextView toastTV = (TextView) toastLayout.getChildAt(0);
+				toastTV.setTextSize(20);
+				toast.setGravity(Gravity.CENTER, 0, 0);
+				toast.show();
+				updateCart();
+				itemDialog.dismiss();
+			}
+		});
+		cancel.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				itemDialog.dismiss();
+			}
+		});
+		remove.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
+				nameValuePair.add(new BasicNameValuePair("function", "remove_cart"));
+				nameValuePair.add(new BasicNameValuePair("itemid",((TextView) itemDialog.findViewById(R.id.dialogItemID)).getText().toString()));
+	
+				JSONObject resultJSON = CustomHTTP.makePOST("http://23.21.158.161:4912/cart.php",nameValuePair);
+	
+				Context context = CartActivity.this;
+				CharSequence text;
+				int duration = Toast.LENGTH_SHORT;
+	
+				if (resultJSON != null) {
+					try {
+						String jsonResult = resultJSON.getString("error");
+						if (jsonResult.equals("true"))
+							text = "Remove failed.";
+						else
+							text = "Remove succeeded.";
+					} catch (Exception e) {
+						e.printStackTrace();
+						text = "Remove failed.";
+					}
+				} else
+					text = "Remove failed.";
+	
+				Toast toast = Toast.makeText(context, text,duration);
+				LinearLayout toastLayout = (LinearLayout) toast.getView();
+				TextView toastTV = (TextView) toastLayout.getChildAt(0);
+				toastTV.setTextSize(20);
+				toast.setGravity(Gravity.CENTER, 0, 0);
+				toast.show();
+				updateCart();
+				itemDialog.dismiss();
+			}
+		});
+
+		itemDialog.show();
 	}
 }
