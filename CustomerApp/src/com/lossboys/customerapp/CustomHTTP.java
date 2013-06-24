@@ -46,7 +46,6 @@ public class CustomHTTP {
         // Making HTTP Request
         try {
             HttpResponse response = httpClient.execute(httpPost,localContext);
-            Log.d("cookie",cookieStore.toString());
             String result = EntityUtils.toString(response.getEntity());
             
             // Writing response to log

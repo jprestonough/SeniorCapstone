@@ -23,16 +23,16 @@
                 android:id="@+id/item_image"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
+                android:contentDescription="item image"
                 android:padding="10dp"
-                android:scaleType="fitCenter"
-                android:contentDescription="item image" />
+                android:scaleType="fitCenter" />
 
             <TextView
                 android:id="@+id/item_name"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/item_image"
-                android:gravity="center"
+                android:text="Name"
                 android:textColor="#ffffff"
                 android:textStyle="bold" />
 
@@ -42,8 +42,39 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/item_name"
                 android:layout_toRightOf="@+id/item_image"
+                android:text="Price"
                 android:textColor="#ffffff"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/quantityLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_price"
+                android:layout_toRightOf="@+id/item_image"
+                android:text="Quantity:"
+                android:textColor="#ffffff" />
+
+            <EditText
+                android:id="@+id/productQuantity"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/quantityLabel"
+                android:layout_marginTop="5dip"
+                android:layout_toRightOf="@+id/item_image"
+                android:inputType="number"
+                android:singleLine="true" />
+
+            <Button
+                android:id="@+id/btnAddtoCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/productQuantity"
+                android:layout_alignTop="@+id/productQuantity"
+                android:layout_toRightOf="@+id/productQuantity"
+                android:text="Add to Cart"
+                android:textColor="#ffffff"
+                android:textSize="13dp" />
 
             <LinearLayout
                 android:layout_width="fill_parent"

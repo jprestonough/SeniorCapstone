@@ -10,59 +10,66 @@
 
     <!-- Allow to connect with internet -->
     <uses-permission android:name="android.permission.INTERNET" />
-    
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        
-        <!-- Customerdashboard.class -->
+
         <activity
-        android:label="@string/app_name"   
-            android:name="com.lossboys.customerapp.dashboard.CustomerDashboard" >
-<!--             <intent-filter > -->
-<!--                 <action android:name="android.intent.action.MAIN" /> -->
- 
-<!--                 <category android:name="android.intent.category.LAUNCHER" /> -->
-<!--             </intent-filter> -->
+            android:name="com.lossboys.customerapp.dashboard.CustomerDashboard"
+            android:label="@string/app_name" >
         </activity>
         
         <activity
             android:name="com.lossboys.customerapp.CustomerLogin"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="Login">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <!--  Entry for RegisterActivity.class -->
-        <activity android:name=".CustomerRegister"
-                  android:label="Register New Account">
+
+        <!-- Entry for RegisterActivity.class -->
+        <activity
+            android:name=".CustomerRegister"
+            android:label="Register New Account" >
         </activity>
-        
+
         <!-- News Feed Activity -->
-        <activity android:name="com.lossboys.customerapp.dashboard.NewsFeedActivity" ></activity>
-  
+        <activity android:name="com.lossboys.customerapp.dashboard.NewsFeedActivity" >
+        </activity>
+
         <!-- Messages Activity -->
-        <activity android:name="com.lossboys.customerapp.dashboard.CartActivity" ></activity>
- 
+        <activity android:name="com.lossboys.customerapp.dashboard.CartActivity" >
+        </activity>
+
         <!-- Places Activity -->
-        <activity android:name="com.lossboys.customerapp.dashboard.PlacesActivity" ></activity>
- 
+        <activity android:name="com.lossboys.customerapp.dashboard.PlacesActivity" >
+        </activity>
+
         <!-- Events Activity -->
-        <activity android:name="com.lossboys.customerapp.dashboard.EventsActivity" ></activity>
-         
+        <activity android:name="com.lossboys.customerapp.dashboard.EventsActivity" >
+        </activity>
+
         <!-- Photos Activity -->
-        <activity android:name="com.lossboys.customerapp.dashboard.PhotosActivity" ></activity>
-        
+        <activity android:name="com.lossboys.customerapp.dashboard.PhotosActivity" >
+        </activity>
+
         <!-- Product Activity -->
-        <activity android:name="com.lossboys.customerapp.dashboard.ProductActivity" ></activity>
-        
+        <activity
+            android:name="com.lossboys.customerapp.dashboard.ProductActivity"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+
         <!-- Scan Activity -->
-        <activity android:name="com.lossboys.customerapp.dashboard.ScanActivity" ></activity>
-        
+        <activity
+            android:name="com.lossboys.customerapp.dashboard.ScanActivity"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
     </application>
+
 </manifest>

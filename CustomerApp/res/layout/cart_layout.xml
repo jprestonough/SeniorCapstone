@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f8f9fe"
     android:orientation="vertical" >
 
     <include layout="@layout/actionbar_layout" />
-<ScrollView
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent"
-  android:fillViewport="true"
-        android:background="@color/bg">
-    <ListView
+
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@android:id/list" />
-</ScrollView>
-</LinearLayout>
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/cartTotalLayout"
+        android:background="@color/bg"
+		android:fillViewport="true">
+
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/cartTotalLayout"
+        style="@style/FooterBar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" >
+
+        <TextView
+            android:id="@+id/cartTotal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dip"
+            android:text="Total: $432.2"
+            android:gravity="center"
+            android:textColor="#606060" />
+    </LinearLayout>
+
+</RelativeLayout>

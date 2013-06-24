@@ -80,9 +80,6 @@ public class CustomerRegister extends Activity {
         // Link to Login Screen
         btnLinkToLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),CustomerLogin.class);
-                startActivity(i);
-                // Close Registration View
                 finish();
             }
         });
