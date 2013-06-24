@@ -87,6 +87,13 @@ public class CartActivity extends ListActivity {
 			e.printStackTrace();
 		}
 		totalView.setText("Total: $" + df.format(total));
+		
+		ListAdapter adapter = new SimpleAdapter(this, itemList,
+				R.layout.list_item,
+				new String[] { "Name", "Quantity", "Price" }, new int[] {
+						R.id.cartName, R.id.cartQuantity, R.id.cartPrice });
+
+		setListAdapter(adapter);
 	}
 
 	protected void onListItemClick(ListView list, View view, int position,
