@@ -38,6 +38,7 @@ import android.widget.Toast;
 public class CartActivity extends ListActivity {
 	TextView totalView;
 	ArrayList<HashMap<String, String>> itemList;
+	Button checkout;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -46,6 +47,19 @@ public class CartActivity extends ListActivity {
 		setContentView(R.layout.cart_layout);
 
 		totalView = (TextView) findViewById(R.id.cartTotal);
+		checkout = (Button) findViewById(R.id.btnCartCheckout);
+		
+		checkout.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent i = new Intent(getApplicationContext(),
+						com.lossboys.customerapp.dashboard.CheckoutActivity.class);
+
+				startActivity(i);
+				finish();
+			}
+		});
 
 		itemList = new ArrayList<HashMap<String, String>>();
 

@@ -51,7 +51,7 @@
         </activity>
 
         <!-- Places Activity -->
-        <activity android:name="com.lossboys.customerapp.dashboard.PlacesActivity" >
+        <activity android:name="com.lossboys.customerapp.dashboard.CheckoutActivity" >
         </activity>
 
         <!-- Events Activity -->

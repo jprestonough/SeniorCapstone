@@ -34,10 +34,10 @@
     <!-- Places Button -->
 
     <Button
-        android:id="@+id/btn_places"
+        android:id="@+id/btn_checkout"
         style="@style/DashboardButton"
-        android:drawableTop="@drawable/btn_places"
-        android:text="Places"
+        android:drawableTop="@drawable/btn_checkout"
+        android:text="Checkout"
         android:textColor="#ffffff" />
 
     <!-- Events Button -->

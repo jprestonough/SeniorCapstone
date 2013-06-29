@@ -14,7 +14,7 @@
 
     <include layout="@layout/actionbar_layout" />
     
-    <LinearLayout
+    <RelativeLayout
         android:id="@id/cartTotalLayout"
         style="@style/CartFooter"
         android:layout_alignParentBottom="true"
@@ -28,6 +28,16 @@
             android:paddingTop="10dip"
             android:text="Total: $432.2"
             android:textColor="@color/white" />
-    </LinearLayout>
+
+        <Button
+            android:id="@+id/btnCartCheckout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="true"
+            android:text="Checkout" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
