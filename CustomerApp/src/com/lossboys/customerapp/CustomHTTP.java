@@ -21,19 +21,28 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import android.net.http.AndroidHttpClient;
 import android.util.Log;
 
 public class CustomHTTP {
 	private static CookieStore cookieStore = new BasicCookieStore();
 	private static HttpContext localContext = new BasicHttpContext();
     	
+	private static boolean debugHTTP = false;
+	
 	public static JSONObject makePOST(String url,List<NameValuePair> nameValuePair){
 		localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
         // Creating HTTP client
         HttpClient httpClient = new DefaultHttpClient();
         // Creating HTTP Post
         HttpPost httpPost = new HttpPost(url);
+        
+        if(debugHTTP){
+	        Log.d("CustomHTTP URL",url);
+	        for (NameValuePair pair : nameValuePair) {
+	        	Log.d("CustomHTTP Param",pair.getName()+" = "+pair.getValue());
+	        }
+        }
+        
         
         // Url Encoding the POST parameters
         try {
