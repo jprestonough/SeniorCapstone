@@ -2,20 +2,10 @@ package com.lossboys.customerapp.dashboard;
 
 import com.lossboys.customerapp.CustomerCameraPreview;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONObject;
-
-import com.lossboys.customerapp.CustomHTTP;
-import com.lossboys.customerapp.CustomerCameraPreview;
 import com.lossboys.customerapp.R;
 
 import android.app.Activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 
@@ -23,23 +13,16 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.view.View.OnClickListener;
-import android.view.Window;
-
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
 import android.hardware.Camera.AutoFocusCallback;
-import android.hardware.Camera.Parameters;
 import android.hardware.Camera.Size;
 
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.FrameLayout;
-import android.graphics.ImageFormat;
-
 /* Import ZBar Class files */
 import net.sourceforge.zbar.ImageScanner;
 import net.sourceforge.zbar.Image;
@@ -207,37 +190,13 @@ public class ScanActivity extends Activity {
                     itemID = sym.getData();
                 }
                 
-                // Building post parameters
-                // key and value pair
-                List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(1);
-                nameValuePair.add(new BasicNameValuePair("ItemID", itemID));
-                
-                JSONObject scanJSON = CustomHTTP.makePOST("http://23.21.158.161:4912/get_item.php", nameValuePair);
-                
-                if(scanJSON != null){
-    				try {
-    					if(!scanJSON.isNull("Error")){
-    						scanText.setText("Item does not exist.");
-    					}else{
-    						Intent i = new Intent(getApplicationContext(),
-    				                com.lossboys.customerapp.dashboard.ProductActivity.class);
+				Intent i = new Intent(getApplicationContext(),
+		                com.lossboys.customerapp.dashboard.ProductActivity.class);
 
-    						i.putExtra("Name",scanJSON.getString("Name"));
-    						i.putExtra("Department",scanJSON.getString("Department"));
-    						i.putExtra("Description",scanJSON.getString("Description"));
-    						i.putExtra("Price",scanJSON.getString("Price"));
-    						i.putExtra("Quantity",scanJSON.getString("Quantity"));
-    						i.putExtra("ItemID",itemID);
-    						
-        	                startActivity(i);
-        	                finish();
-    					}
-    				} catch (Exception e) {
-    					e.printStackTrace();
-    					scanText.setText("Lookup failed.");
-    				}
-                } else
-                	scanText.setText("Lookup failed.");
+				i.putExtra("ItemID",itemID);
+				
+                startActivity(i);
+                finish();
             }
         }
     };

@@ -11,12 +11,13 @@ import org.json.JSONObject;
 import com.lossboys.customerapp.CustomHTTP;
 import com.lossboys.customerapp.R;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +32,7 @@ public class ProductActivity extends Activity {
 	ImageView itemImage;
 	EditText inputQuantity;
 	Button addToCart;
+	ProgressDialog pd = null;
 	
 	 /** Called when the activity is first created. */
     @Override
@@ -38,29 +40,11 @@ public class ProductActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_layout);
         
-        itemName = (TextView) findViewById(R.id.item_name);
-        itemDepartment = (TextView) findViewById(R.id.item_department);
-        itemDescription = (TextView) findViewById(R.id.item_description);
-        itemPrice = (TextView) findViewById(R.id.item_price);
-        itemQuantity = (TextView) findViewById(R.id.item_quantity);
-        itemImage = (ImageView) findViewById(R.id.item_image);
-        inputQuantity = (EditText) findViewById(R.id.productQuantity);
+        pd = ProgressDialog.show(this, "Working..", "Downloading Data...", true, false);
+        
+        new DownloadTask().execute(getIntent().getStringExtra("ItemID"));
+
         addToCart = (Button) findViewById(R.id.btnAddtoCart);
-        
-        itemName.setText(getIntent().getStringExtra("Name"));
-        itemDepartment.setText(getIntent().getStringExtra("Department"));
-        itemDescription.setText(getIntent().getStringExtra("Description"));
-        itemPrice.setText("$"+getIntent().getStringExtra("Price"));
-        itemQuantity.setText(getIntent().getStringExtra("Quantity"));
-        
-        URL url;
-		try {
-			url = new URL("http://23.21.158.161:4912/item_images/"+getIntent().getStringExtra("ItemID")+".jpg");
-			Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-			itemImage.setImageBitmap(bmp);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 		addToCart.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -99,8 +83,60 @@ public class ProductActivity extends Activity {
                 toastTV.setTextSize(20);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
+                Intent returnIntent = new Intent();
+                setResult(RESULT_OK,returnIntent);
                 finish();
 			}
 		});
     }
+    
+    private class DownloadTask extends AsyncTask<String, Void, Object> {
+        protected Object doInBackground(String... args) {
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(1);
+            nameValuePair.add(new BasicNameValuePair("ItemID", args[0]));
+            
+            JSONObject scanJSON = CustomHTTP.makePOST("http://23.21.158.161:4912/get_item.php", nameValuePair);
+
+            return scanJSON;
+        }
+
+        protected void onPostExecute(Object result) {
+            itemName = (TextView) findViewById(R.id.item_name);
+            itemDepartment = (TextView) findViewById(R.id.item_department);
+            itemDescription = (TextView) findViewById(R.id.item_description);
+            itemPrice = (TextView) findViewById(R.id.item_price);
+            itemQuantity = (TextView) findViewById(R.id.item_quantity);
+            itemImage = (ImageView) findViewById(R.id.item_image);
+            inputQuantity = (EditText) findViewById(R.id.productQuantity);
+            
+            JSONObject scanJSON = (JSONObject) result;
+            
+            if(scanJSON != null){
+    			try {
+    				if(scanJSON.isNull("Error")){
+    			        itemName.setText(scanJSON.getString("Name"));
+    			        itemDepartment.setText(scanJSON.getString("Department"));
+    			        itemDescription.setText(scanJSON.getString("Description"));
+    			        itemPrice.setText("$"+scanJSON.getString("Price"));
+    			        itemQuantity.setText(scanJSON.getString("Quantity"));
+    				}
+    			} catch (Exception e) {
+    				e.printStackTrace();
+    			}
+            }
+            
+            URL url;
+    		try {
+    			url = new URL("http://23.21.158.161:4912/item_images/"+getIntent().getStringExtra("ItemID")+".jpg");
+    			Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+    			itemImage.setImageBitmap(bmp);
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+
+            if (ProductActivity.this.pd != null) {
+            	ProductActivity.this.pd.dismiss();
+            }
+        }
+   } 
 }
