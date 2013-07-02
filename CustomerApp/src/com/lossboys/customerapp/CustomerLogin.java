@@ -28,27 +28,22 @@ public class CustomerLogin extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		if (android.os.Build.VERSION.SDK_INT > 9) {
-			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-					.permitAll().build();
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 			StrictMode.setThreadPolicy(policy);
 		}
 
-		getWindow().setSoftInputMode(
-				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 		super.onCreate(savedInstanceState);
 
 		// Check to see if already logged in
 		List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(0);
-		JSONObject checkJSON = CustomHTTP.makePOST(
-				"http://23.21.158.161:4912/check_login.php", nameValuePair);
+		JSONObject checkJSON = CustomHTTP.makePOST("http://23.21.158.161:4912/check_login.php", nameValuePair);
 		if (checkJSON != null) {
 			try {
 				String jsonResult = checkJSON.getString("login");
 				if (jsonResult.equals("true")) {
-					Intent i = new Intent(
-							getApplicationContext(),
-							com.lossboys.customerapp.dashboard.CustomerDashboard.class);
+					Intent i = new Intent(getApplicationContext(), com.lossboys.customerapp.dashboard.CustomerDashboard.class);
 					startActivity(i);
 					finish();
 				}
@@ -75,13 +70,11 @@ public class CustomerLogin extends Activity {
 
 				// Building post parameters
 				// key and value pair
-				List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(
-						2);
+				List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
 				nameValuePair.add(new BasicNameValuePair("email", email));
 				nameValuePair.add(new BasicNameValuePair("password", password));
 
-				JSONObject loginJSON = CustomHTTP.makePOST(
-						"http://23.21.158.161:4912/login.php", nameValuePair);
+				JSONObject loginJSON = CustomHTTP.makePOST("http://23.21.158.161:4912/login.php", nameValuePair);
 
 				if (loginJSON != null) {
 					try {
@@ -89,9 +82,7 @@ public class CustomerLogin extends Activity {
 						if (jsonResult.equals("false"))
 							loginErrorMsg.setText("Invalid email or password!");
 						else {
-							Intent i = new Intent(
-									getApplicationContext(),
-									com.lossboys.customerapp.dashboard.CustomerDashboard.class);
+							Intent i = new Intent(getApplicationContext(), com.lossboys.customerapp.dashboard.CustomerDashboard.class);
 							startActivity(i);
 							finish();
 						}
@@ -106,8 +97,7 @@ public class CustomerLogin extends Activity {
 
 		btnLinkToRegister.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				Intent i = new Intent(getApplicationContext(),
-						CustomerRegister.class);
+				Intent i = new Intent(getApplicationContext(), CustomerRegister.class);
 				startActivity(i);
 			}
 		});

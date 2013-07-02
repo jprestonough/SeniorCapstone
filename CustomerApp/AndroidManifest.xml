@@ -54,8 +54,12 @@
         <activity android:name="com.lossboys.customerapp.dashboard.CheckoutActivity" >
         </activity>
 
-        <!-- Events Activity -->
-        <activity android:name="com.lossboys.customerapp.dashboard.EventsActivity" >
+        <!-- Account Activity -->
+        <activity android:name="com.lossboys.customerapp.dashboard.AccountActivity" >
+        </activity>
+        <activity android:name="com.lossboys.customerapp.dashboard.ChangeEmail" >
+        </activity>
+        <activity android:name="com.lossboys.customerapp.dashboard.ChangePassword" >
         </activity>
 
         <!-- Photos Activity -->

@@ -43,10 +43,10 @@
     <!-- Events Button -->
 
     <Button
-        android:id="@+id/btn_events"
+        android:id="@+id/btn_account"
         style="@style/DashboardButton"
-        android:drawableTop="@drawable/btn_events"
-        android:text="Events"
+        android:drawableTop="@drawable/btn_account"
+        android:text="Account"
         android:textColor="#ffffff" />
 
     <!-- Photos Button -->

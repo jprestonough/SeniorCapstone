@@ -40,14 +40,13 @@ public class CustomerDashboard extends Activity {
 		Button btn_checkout = (Button) findViewById(R.id.btn_checkout);
 
 		// Dashboard Events button
-		Button btn_events = (Button) findViewById(R.id.btn_events);
+		Button btn_account = (Button) findViewById(R.id.btn_account);
 
 		// Dashboard Photos button
 		Button btn_photos = (Button) findViewById(R.id.btn_photos);
 
-		btn_events.setVisibility(View.INVISIBLE);
 		btn_photos.setVisibility(View.INVISIBLE);
-		
+
 		/**
 		 * Handling all button click events
 		 * */
@@ -56,11 +55,10 @@ public class CustomerDashboard extends Activity {
 			@Override
 			public void onClick(View view) {
 				List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(0);
-		        CustomHTTP.makePOST("http://23.21.158.161:4912/logout.php", nameValuePair);
-				Intent i = new Intent(getApplicationContext(),
-	                    com.lossboys.customerapp.CustomerLogin.class);
-	            startActivity(i);
-	            finish();
+				CustomHTTP.makePOST("http://23.21.158.161:4912/logout.php", nameValuePair);
+				Intent i = new Intent(getApplicationContext(), com.lossboys.customerapp.CustomerLogin.class);
+				startActivity(i);
+				finish();
 			}
 		});
 
@@ -70,8 +68,7 @@ public class CustomerDashboard extends Activity {
 			@Override
 			public void onClick(View view) {
 				// Launching News Feed Screen
-				Intent i = new Intent(getApplicationContext(),
-						ScanActivity.class);
+				Intent i = new Intent(getApplicationContext(), ScanActivity.class);
 				startActivity(i);
 			}
 		});
@@ -82,8 +79,7 @@ public class CustomerDashboard extends Activity {
 			@Override
 			public void onClick(View view) {
 				// Launching News Feed Screen
-				Intent i = new Intent(getApplicationContext(),
-						CartActivity.class);
+				Intent i = new Intent(getApplicationContext(), CartActivity.class);
 				startActivity(i);
 			}
 		});
@@ -94,20 +90,18 @@ public class CustomerDashboard extends Activity {
 			@Override
 			public void onClick(View view) {
 				// Launching News Feed Screen
-				Intent i = new Intent(getApplicationContext(),
-						CheckoutActivity.class);
+				Intent i = new Intent(getApplicationContext(), CheckoutActivity.class);
 				startActivity(i);
 			}
 		});
 
 		// Listening to Events button click
-		btn_events.setOnClickListener(new View.OnClickListener() {
+		btn_account.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
 				// Launching News Feed Screen
-				Intent i = new Intent(getApplicationContext(),
-						EventsActivity.class);
+				Intent i = new Intent(getApplicationContext(), AccountActivity.class);
 				startActivity(i);
 			}
 		});
@@ -118,8 +112,7 @@ public class CustomerDashboard extends Activity {
 			@Override
 			public void onClick(View view) {
 				// Launching News Feed Screen
-				Intent i = new Intent(getApplicationContext(),
-						PhotosActivity.class);
+				Intent i = new Intent(getApplicationContext(), PhotosActivity.class);
 				startActivity(i);
 			}
 		});
