@@ -109,16 +109,6 @@
                 android:password="true"
                 android:singleLine="true" />
 
-            <!-- Error message -->
-
-            <TextView
-                android:id="@+id/register_error"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dip"
-                android:textColor="#e30000"
-                android:textStyle="bold" />
-
             <!-- Register Button -->
 
             <Button

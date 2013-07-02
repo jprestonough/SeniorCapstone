@@ -1,9 +1,11 @@
 package com.lossboys.customerapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -14,8 +16,11 @@ import java.util.List;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
+
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class CustomerLogin extends Activity {
 
@@ -23,7 +28,6 @@ public class CustomerLogin extends Activity {
 	Button btnLinkToRegister;
 	EditText inputEmail;
 	EditText inputPassword;
-	TextView loginErrorMsg;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +63,6 @@ public class CustomerLogin extends Activity {
 		inputPassword = (EditText) findViewById(R.id.loginPassword);
 		btnLogin = (Button) findViewById(R.id.btnLogin);
 		btnLinkToRegister = (Button) findViewById(R.id.btnLinkToRegisterScreen);
-		loginErrorMsg = (TextView) findViewById(R.id.login_error);
 
 		// Set up the user interaction to manually show or hide the system UI.
 		btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +70,9 @@ public class CustomerLogin extends Activity {
 			public void onClick(View view) {
 				String email = inputEmail.getText().toString();
 				String password = inputPassword.getText().toString();
+				Context context = CustomerLogin.this;
+				CharSequence text = "";
+				int duration = Toast.LENGTH_SHORT;
 
 				// Building post parameters
 				// key and value pair
@@ -80,7 +86,7 @@ public class CustomerLogin extends Activity {
 					try {
 						String jsonResult = loginJSON.getString("login");
 						if (jsonResult.equals("false"))
-							loginErrorMsg.setText("Invalid email or password!");
+							text = "Invalid email or password!";
 						else {
 							Intent i = new Intent(getApplicationContext(), com.lossboys.customerapp.dashboard.CustomerDashboard.class);
 							startActivity(i);
@@ -88,10 +94,17 @@ public class CustomerLogin extends Activity {
 						}
 					} catch (Exception e) {
 						e.printStackTrace();
-						loginErrorMsg.setText("Login failed.");
+						text = "Login failed.";
 					}
 				} else
-					loginErrorMsg.setText("Login failed.");
+					text = "Login failed.";
+
+				Toast toast = Toast.makeText(context, text, duration);
+				LinearLayout toastLayout = (LinearLayout) toast.getView();
+				TextView toastTV = (TextView) toastLayout.getChildAt(0);
+				toastTV.setTextSize(20);
+				toast.setGravity(Gravity.CENTER, 0, 0);
+				toast.show();
 			}
 		});
 
