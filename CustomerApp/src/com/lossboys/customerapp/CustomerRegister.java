@@ -7,13 +7,19 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
+import com.lossboys.customerapp.dashboard.ChangeEmail;
+
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class CustomerRegister extends Activity {
 
@@ -23,7 +29,6 @@ public class CustomerRegister extends Activity {
 	EditText inputLastName;
 	EditText inputEmail;
 	EditText inputPassword;
-	TextView registerErrorMsg;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,6 @@ public class CustomerRegister extends Activity {
 		inputPassword = (EditText) findViewById(R.id.reg_password);
 		btnRegister = (Button) findViewById(R.id.btnRegister);
 		btnLinkToLogin = (Button) findViewById(R.id.btnLinkToLoginScreen);
-		registerErrorMsg = (TextView) findViewById(R.id.register_error);
 
 		// Register Button Click event
 		btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +51,11 @@ public class CustomerRegister extends Activity {
 				String lastname = inputLastName.getText().toString();
 				String email = inputEmail.getText().toString();
 				String password = inputPassword.getText().toString();
+				
+				Context context = CustomerRegister.this;
+				CharSequence text;
+				int duration = Toast.LENGTH_SHORT;
+				boolean done = false;
 
 				// Building post parameters
 				// key and value pair
@@ -62,17 +71,33 @@ public class CustomerRegister extends Activity {
 					try {
 						String jsonResult = registerJSON.getString("error");
 						if (jsonResult.equals("1"))
-							registerErrorMsg.setText("Please fill out all information.");
+							text = "Please fill out all information.";
 						else if (jsonResult.equals("2"))
-							registerErrorMsg.setText("Email is already registered.");
-						else
-							registerErrorMsg.setText("Register successful.");
+							text = "Email is already registered.";
+						else if (jsonResult.equals("bad_email"))
+							text = "Email is invalid.";
+						else if (jsonResult.equals("bad_password"))
+							text = "Password must be 8-32 characters.";
+						else{
+							text = "Register successful.";
+							done = true;
+						}
 					} catch (Exception e) {
 						e.printStackTrace();
-						registerErrorMsg.setText("Register failed.");
+						text = "Register failed.";
 					}
 				} else
-					registerErrorMsg.setText("Register failed.");
+					text = "Register failed.";
+				
+				Toast toast = Toast.makeText(context, text, duration);
+				LinearLayout toastLayout = (LinearLayout) toast.getView();
+				TextView toastTV = (TextView) toastLayout.getChildAt(0);
+				toastTV.setTextSize(20);
+				toast.setGravity(Gravity.CENTER, 0, 0);
+				toast.show();
+				
+				if(done)
+					finish();
 			}
 		});
 
