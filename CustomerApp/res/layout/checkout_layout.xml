@@ -1,24 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#f8f9fe"
-    android:orientation="vertical" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true" >
 
-    <include layout="@layout/actionbar_layout" />
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:background="@color/bg" >
+
+        <!-- Header Starts -->
+
+        <!-- Include Action Bar -->
+        <include layout="@layout/actionbar_layout"/>
+        <!-- Header Ends -->
+        <!-- Footer Start -->
+		<RelativeLayout
+        android:id="@id/cartTotalLayout"
+        style="@style/CartFooter"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" >
 
         <TextView
+            android:id="@+id/cartTotal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:padding="15dip"
-            android:text="Checkout Screen"
-            android:textColor="#ff29549f"
-            android:textSize="25dip"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:gravity="center"
+            android:paddingTop="10dip"
+            android:paddingBottom="10dip"
+            android:text="Total: $432.2"
+            android:textColor="@color/white" />
+        </RelativeLayout>
 
-</LinearLayout>
+        <!-- Footer Ends -->
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/banner"
+            android:orientation="vertical"
+            android:padding="10dip" >
+
+            
+             <!-- Text Label -->
+		    <TextView
+		        android:id="@+id/cardtype_Text"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="10dip"
+		        android:text="@string/cardType"
+		        android:textColor="@color/white"
+		        android:layout_marginBottom="5dp"
+		    />
+		 
+		    <!-- Spinner Element -->
+		    <Spinner
+		        android:id="@+id/cardtype_spinner"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@id/cardtype_Text"
+		        android:prompt="@string/typespinner_title"
+		    />
+
+            <TextView
+                android:id="@+id/cardnumber_Text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cardtype_spinner"
+                android:text="@string/cardNumber"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/cardNumber"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cardnumber_Text"
+                android:maxLength="16"
+                android:inputType="number"
+                android:layout_marginBottom="20dip"
+                android:layout_marginTop="5dip"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/cardexp_Text"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@id/cardNumber"
+		        android:layout_marginTop="10dip"
+		        android:text="@string/expirationDate"
+		        android:textColor="@color/white"
+		        android:layout_marginBottom="5dp"
+		    />
+		 
+		    <!-- Spinner Element -->
+
+		    <Spinner
+		        android:id="@+id/cardexpMM_spinner"
+		        android:layout_width="100dp"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@id/cardexp_Text"
+		        android:prompt="@string/expspinnerMM_title" />
+
+		    <!-- Spinner Element -->
+
+		    <Spinner
+		        android:id="@+id/cardexpYYYY_spinner"
+		        android:layout_width="200dp"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@id/cardexp_Text"
+		        android:layout_toRightOf="@id/cardexpMM_spinner"
+		        android:prompt="@string/expspinnerYYYY_title" />
+
+            <TextView
+                android:id="@+id/cardsecurity_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cardexpYYYY_spinner"
+                android:text="@string/securityCode"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/securityCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLength="4"
+                android:inputType="number"
+                android:layout_below="@id/cardexpYYYY_spinner"
+                android:layout_toRightOf="@id/cardsecurity_Text"
+                android:layout_marginBottom="20dip"
+                android:layout_marginTop="5dip"
+                android:singleLine="true" />
+
+            <!-- Error message -->
+
+            <TextView
+                android:id="@+id/checkout_error"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:textColor="#e30000"
+                android:textStyle="bold" />
+
+            <!-- Register Button -->
+
+            <Button
+                android:id="@+id/btnNext"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/securityCode"
+                android:layout_marginTop="20dip"
+                android:text="@string/next"
+                android:textColor="@color/white" />
+
+
+            <Button
+                android:id="@+id/btnPayAtRegister"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnNext"
+                android:layout_marginTop="20dip"
+                android:layout_marginBottom="10dip"
+                android:background="@null"
+                android:text="@string/PaR"
+                android:textColor="@color/white"
+                android:textSize="20dip"
+                android:textStyle="bold" />
+        </RelativeLayout>
+>
+    </RelativeLayout>
+
+</ScrollView>
