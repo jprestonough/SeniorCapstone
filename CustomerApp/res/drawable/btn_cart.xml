@@ -1,12 +1,13 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/cart"
+    <item android:drawable="@drawable/icon_cart"
         android:state_focused="true"
         android:state_pressed="true" />
-    <item android:drawable="@drawable/cart"
+    <item android:drawable="@drawable/icon_cart"
         android:state_focused="false"
         android:state_pressed="true" />
-    <item android:drawable="@drawable/cart" android:state_focused="true" />
-    <item android:drawable="@drawable/cart"
+    <item android:drawable="@drawable/icon_cart" android:state_focused="true" />
+    <item android:drawable="@drawable/icon_cart"
         android:state_focused="false"
         android:state_pressed="false" />
+    
 </selector>

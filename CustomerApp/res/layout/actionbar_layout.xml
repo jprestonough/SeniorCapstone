@@ -2,13 +2,14 @@
     style="@style/ActionBarCompat"
     android:id="@+id/banner">"
  
-    <ImageView
-        android:layout_width="wrap_content"
+     <Button
+        android:id="@+id/btn_home"
+        android:drawableTop="@drawable/btn_home"
+		android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:clickable="false"
-        android:scaleType="fitCenter"
-        android:src="@drawable/logo" />
- 
+        android:clickable="true"
+        android:scaleType="fitCenter" />
+     
 </LinearLayout>

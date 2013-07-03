@@ -4,17 +4,19 @@
     android:layout_weight="1"
     android:background="#336699" >
 
+    <!--  <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">-->
+    	
     <!-- Scan Button -->
-
     <Button
         android:id="@+id/btn_scan"
         style="@style/DashboardButton"
         android:drawableTop="@drawable/btn_scan"
         android:text="Scan Item"
         android:textColor="#ffffff" />
-
-    <!-- Logout Button -->
-
+    
+	<!-- Logout Button -->
     <Button
         android:id="@+id/btn_logout"
         style="@style/DashboardButton"
