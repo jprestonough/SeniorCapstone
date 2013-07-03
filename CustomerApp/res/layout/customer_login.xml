@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:background="@color/bg" >
 
         <!-- Header Starts -->
@@ -28,7 +28,8 @@
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/logo" />
+                android:src="@drawable/logo"
+                android:contentDescription="@string/logo" />
 
             <!-- Logo Ends -->
         </LinearLayout>
@@ -54,7 +55,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Email"
+                android:text="@string/email"
                 android:textColor="#ffffff" />
 
             <EditText
@@ -63,13 +64,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dip"
                 android:layout_marginTop="5dip"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:inputType="textEmailAddress" />
             <!-- Password Label -->
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Password"
+                android:text="@string/password"
                 android:textColor="#ffffff" />
 
             <EditText
@@ -77,7 +79,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dip"
-                android:password="true"
+                android:inputType="textPassword"
                 android:singleLine="true" />
 
             <!-- Login button -->
@@ -102,7 +104,7 @@
                 android:gravity="center"
                 android:text="New to our App? Register here!"
                 android:textColor="#ffffff"
-                android:textSize="20dip" />
+                android:textSize="20sp" />
         </LinearLayout>
         <!-- Login Form Ends -->
 

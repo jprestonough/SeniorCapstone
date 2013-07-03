@@ -7,8 +7,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
-import com.lossboys.customerapp.dashboard.ChangeEmail;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
