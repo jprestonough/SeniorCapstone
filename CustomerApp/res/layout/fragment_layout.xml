@@ -13,7 +13,7 @@
         android:id="@+id/btn_scan"
         style="@style/DashboardButton"
         android:drawableTop="@drawable/btn_scan"
-        android:text="Scan Item"
+        android:text="@string/scanItem"
         android:textColor="#ffffff" />
     
 	<!-- Logout Button -->
