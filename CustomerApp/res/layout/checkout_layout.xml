@@ -48,7 +48,7 @@
 		        android:id="@+id/cardtype_Text"
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
-		        android:layout_marginTop="10dip"
+		        android:layout_marginTop="5dip"
 		        android:text="@string/cardType"
 		        android:textColor="@color/white"
 		        android:layout_marginBottom="5dp"
@@ -68,6 +68,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cardtype_spinner"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:text="@string/cardNumber"
                 android:textColor="@color/white" />
 
@@ -78,8 +80,8 @@
                 android:layout_below="@id/cardnumber_Text"
                 android:maxLength="16"
                 android:inputType="number"
-                android:layout_marginBottom="20dip"
-                android:layout_marginTop="5dip"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:singleLine="true" />
 
             <TextView
@@ -87,7 +89,7 @@
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
 		        android:layout_below="@id/cardNumber"
-		        android:layout_marginTop="10dip"
+		        android:layout_marginTop="5dip"
 		        android:text="@string/expirationDate"
 		        android:textColor="@color/white"
 		        android:layout_marginBottom="5dp"
@@ -117,6 +119,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cardexpYYYY_spinner"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:text="@string/securityCode"
                 android:textColor="@color/white" />
 
@@ -126,10 +130,9 @@
                 android:layout_height="wrap_content"
                 android:maxLength="4"
                 android:inputType="number"
-                android:layout_below="@id/cardexpYYYY_spinner"
-                android:layout_toRightOf="@id/cardsecurity_Text"
-                android:layout_marginBottom="20dip"
-                android:layout_marginTop="5dip"
+                android:layout_below="@id/cardsecurity_Text"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:singleLine="true" />
 
             <!-- Error message -->
@@ -149,7 +152,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/securityCode"
-                android:layout_marginTop="20dip"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
                 android:text="@string/next"
                 android:textColor="@color/white" />
 
@@ -159,8 +163,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/btnNext"
-                android:layout_marginTop="20dip"
-                android:layout_marginBottom="10dip"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@null"
                 android:text="@string/PaR"
                 android:textColor="@color/white"

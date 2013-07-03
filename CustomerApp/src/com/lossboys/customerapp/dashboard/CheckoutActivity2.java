@@ -14,7 +14,7 @@ import android.widget.TextView;
 public class CheckoutActivity2 extends Activity {
 	/** Called when the activity is first created. */
 
-	Button btn_submit = (Button) findViewById(R.id.btnSubmit);
+	Button btn_submit;
 	EditText inputCardName;
 	EditText inputCardAddress;
 	TextView checkout2ErrorMsg;

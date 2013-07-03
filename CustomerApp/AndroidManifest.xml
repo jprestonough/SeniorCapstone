@@ -50,8 +50,10 @@
         <activity android:name="com.lossboys.customerapp.dashboard.CartActivity" >
         </activity>
 
-        <!-- Places Activity -->
+        <!-- Checkout Activity -->
         <activity android:name="com.lossboys.customerapp.dashboard.CheckoutActivity" >
+        </activity>
+        <activity android:name="com.lossboys.customerapp.dashboard.CheckoutActivity2" >
         </activity>
 
         <!-- Account Activity -->
