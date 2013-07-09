@@ -56,7 +56,7 @@ public class InventoryLogin extends Activity {
 			}
 		}
 
-		setContentView(R.layout.activity_cart_list);
+		setContentView(R.layout.inventory_login);
 
 		// Importing all assets like buttons, text fields
 		inputID = (EditText) findViewById(R.id.inventoryID);

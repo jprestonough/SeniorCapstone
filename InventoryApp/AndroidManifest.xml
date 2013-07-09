@@ -7,6 +7,12 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="17" />
+    
+    <!-- Allow to connect with internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+   	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-feature android:name="android.hardware.camera" />  
+	<uses-feature android:name="android.hardware.camera.autofocus" /> 
 
     <application
         android:allowBackup="true"
@@ -14,13 +20,17 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.lossboys.inventoryapp.CartListActivity"
+            android:name="com.lossboys.inventoryapp.InventoryLogin"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.lossboys.inventoryapp.CartListActivity"
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.lossboys.inventoryapp.CartDetailActivity"
