@@ -11,29 +11,14 @@
 
         <!-- Header Starts -->
 
+
         <!-- Include Action Bar -->
-        <include layout="@layout/actionbar_layout"/>
+
+        <include layout="@layout/actionbar_layout" />
         <!-- Header Ends -->
         <!-- Footer Start -->
-		<RelativeLayout
-        android:id="@id/cartTotalLayout"
-        style="@style/CartFooter"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true" >
-
-        <TextView
-            android:id="@+id/cartTotal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="10dip"
-            android:paddingBottom="10dip"
-            android:text="Total: $432.2"
-            android:textColor="@color/white" />
-        </RelativeLayout>
 
         <!-- Footer Ends -->
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -42,34 +27,34 @@
             android:orientation="vertical"
             android:padding="10dip" >
 
-            
-             <!-- Text Label -->
-		    <TextView
-		        android:id="@+id/cardtype_Text"
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_marginTop="5dip"
-		        android:text="@string/cardType"
-		        android:textColor="@color/white"
-		        android:layout_marginBottom="5dp"
-		    />
-		 
-		    <!-- Spinner Element -->
-		    <Spinner
-		        android:id="@+id/cardtype_spinner"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_below="@id/cardtype_Text"
-		        android:prompt="@string/typespinner_title"
-		    />
+            <!-- Text Label -->
+
+            <TextView
+                android:id="@+id/cardtype_Text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cartTotal"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dip"
+                android:text="@string/cardType"
+                android:textColor="@color/white" />
+
+            <!-- Spinner Element -->
+
+            <Spinner
+                android:id="@+id/cardtype_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cardtype_Text"
+                android:prompt="@string/typespinner_title" />
 
             <TextView
                 android:id="@+id/cardnumber_Text"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cardtype_spinner"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/cardNumber"
                 android:textColor="@color/white" />
 
@@ -78,49 +63,47 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cardnumber_Text"
-                android:maxLength="16"
-                android:inputType="number"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:singleLine="true" />
+                android:layout_marginTop="5dp"
+                android:inputType="number"
+                android:maxLength="16" />
 
             <TextView
                 android:id="@+id/cardexp_Text"
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_below="@id/cardNumber"
-		        android:layout_marginTop="5dip"
-		        android:text="@string/expirationDate"
-		        android:textColor="@color/white"
-		        android:layout_marginBottom="5dp"
-		    />
-		 
-		    <!-- Spinner Element -->
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cardNumber"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dip"
+                android:text="@string/expirationDate"
+                android:textColor="@color/white" />
 
-		    <Spinner
-		        android:id="@+id/cardexpMM_spinner"
-		        android:layout_width="100dp"
-		        android:layout_height="wrap_content"
-		        android:layout_below="@id/cardexp_Text"
-		        android:prompt="@string/expspinnerMM_title" />
+            <!-- Spinner Element -->
 
-		    <!-- Spinner Element -->
+            <Spinner
+                android:id="@+id/cardexpMM_spinner"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cardexp_Text"
+                android:prompt="@string/expspinnerMM_title" />
 
-		    <Spinner
-		        android:id="@+id/cardexpYYYY_spinner"
-		        android:layout_width="200dp"
-		        android:layout_height="wrap_content"
-		        android:layout_below="@id/cardexp_Text"
-		        android:layout_toRightOf="@id/cardexpMM_spinner"
-		        android:prompt="@string/expspinnerYYYY_title" />
+            <!-- Spinner Element -->
+
+            <Spinner
+                android:id="@+id/cardexpYYYY_spinner"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cardexp_Text"
+                android:layout_toRightOf="@id/cardexpMM_spinner"
+                android:prompt="@string/expspinnerYYYY_title" />
 
             <TextView
                 android:id="@+id/cardsecurity_Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cardexpYYYY_spinner"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/securityCode"
                 android:textColor="@color/white" />
 
@@ -128,11 +111,12 @@
                 android:id="@+id/securityCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLength="4"
-                android:inputType="number"
+                android:ems="3"
                 android:layout_below="@id/cardsecurity_Text"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:inputType="number"
+                android:maxLength="3"
                 android:singleLine="true" />
 
             <!-- Error message -->
@@ -152,24 +136,36 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/securityCode"
-                android:layout_marginTop="15dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="15dp"
                 android:text="@string/next"
                 android:textColor="@color/white" />
-
 
             <Button
                 android:id="@+id/btnPayAtRegister"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/btnNext"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:background="@null"
                 android:text="@string/PaR"
                 android:textColor="@color/white"
                 android:textSize="20dip"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/cartTotal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:gravity="center"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip"
+                android:text="Total: $432.2"
+                android:textColor="@color/white" />
+
         </RelativeLayout>
 >
     </RelativeLayout>

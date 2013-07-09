@@ -20,16 +20,6 @@
         style="@style/CartFooter"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true" >
-
-        <TextView
-            android:id="@+id/cartTotal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="10dip"
-            android:paddingBottom="10dip"
-            android:text="Total: $432.2"
-            android:textColor="@color/white" />
         </RelativeLayout>
 
         <!-- Footer Ends -->
@@ -42,21 +32,12 @@
             android:padding="10dip" >
             
              <!-- Text Label -->
-		    <TextView
-		        android:id="@+id/cardholderName_Text"
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_marginTop="10dip"
-		        android:text="@string/cardName"
-		        android:textColor="@color/white"
-		        android:layout_marginBottom="5dp"
-		    />
 		 
 		    <EditText
                 android:id="@+id/cardName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/cardholderName_Text"
+                android:layout_below="@+id/cardholderName_Text"
                 android:layout_marginBottom="20dip"
                 android:layout_marginTop="5dip"
                 android:singleLine="true" />
@@ -80,14 +61,6 @@
 
             <!-- Error message -->
 
-            <TextView
-                android:id="@+id/checkout2_error"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dip"
-                android:textColor="#e30000"
-                android:textStyle="bold" />
-
 
             <Button
                 android:id="@+id/btnSubmit"
@@ -96,6 +69,27 @@
                 android:layout_below="@id/cardAddress"
                 android:layout_marginTop="20dip"
                 android:text="@string/submit"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/cartTotal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:gravity="center"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip"
+                android:text="Total: $432.2"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/cardholderName_Text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/cardName"
+                android:layout_below="@+id/cartTotal"
+                android:text="@string/cardName"
                 android:textColor="@color/white" />
 
         </RelativeLayout>
