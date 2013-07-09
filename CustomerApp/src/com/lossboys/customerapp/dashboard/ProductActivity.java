@@ -30,7 +30,6 @@ import android.widget.Toast;
 public class ProductActivity extends Activity {
 	TextView itemName, itemDepartment, itemDescription, itemPrice, itemQuantity;
 	ImageView itemImage;
-	EditText inputQuantity;
 	Button addToCart;
 	ProgressDialog pd = null;
 
@@ -49,7 +48,7 @@ public class ProductActivity extends Activity {
 		addToCart.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				String quantity = inputQuantity.getText().toString();
+				String quantity = "1";
 
 				// Building post parameters
 				// key and value pair
@@ -107,7 +106,6 @@ public class ProductActivity extends Activity {
 			itemPrice = (TextView) findViewById(R.id.item_price);
 			itemQuantity = (TextView) findViewById(R.id.item_quantity);
 			itemImage = (ImageView) findViewById(R.id.item_image);
-			inputQuantity = (EditText) findViewById(R.id.productQuantity);
 
 			JSONObject scanJSON = (JSONObject) result;
 
