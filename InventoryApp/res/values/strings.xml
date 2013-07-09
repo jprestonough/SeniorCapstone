@@ -1,32 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Customer App</string>
+    <string name="app_name">Inventory App</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="typespinner_title">Select Card Type</string>
-    <string name="expspinnerMM_title">Card Expiration MM</string>
-    <string name="expspinnerYYYY_title">Card Expiration YYYY</string>
-    <string name="cardNumber">Card Number</string>
-    <string name="expirationDate">Expiration Date</string>
-    <string name="securityCode">Security Code</string>
     <string name="next">Next</string>
-    <string name="PaR">Pay at Pickup</string>
-    <string name="cardType">Card Type</string>
-    <string name="cardName">Cardholder Name</string>
-    <string name="cardAddress">Cardholder Address: Street Address, City, State, ZIP</string>
     <string name="submit">Submit Payment</string>
     <string name="scanItem">Scan Item</string>
     <string name="password">Password</string>
-    <string name="changePassword">Change Password</string>
-    <string name="email">Email</string>
-    <string name="changeEmail">Change Email</string>
-    <string name="newEmail">New Email</string>
-    <string name="confirmEmail">Confirm Email</string>
-    <string name="newPassword">New Password</string>
-    <string name="confirmPassword">Confirm Password</string>
+    <string name="inventoryID">Inventory Associate ID</string>
     <string name="apply">Apply</string>
-    <string name="logo">logo</string>
+    <string name="logo">LossBoys</string>
+    <string name="login">Login</string>
+    <string name="title_cart_detail">Inventory App</string>
     
     
 
