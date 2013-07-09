@@ -35,12 +35,6 @@ public class CartListContent {
 	 */
 	public static Map<String, Cart> CART_MAP = new HashMap<String, Cart>();
 
-	static {
-		// Add 3 sample items.
-		addItem(new Cart("1", "Item 1"));
-		addItem(new Cart("2", "Item 2"));
-		addItem(new Cart("3", "Item 3"));
-	}
 
 	private static void addItem(Cart cart) {
 		CARTS.add(cart);
@@ -65,41 +59,29 @@ public class CartListContent {
 		}
 	}
 	
-	private void updateCartList() {
-		cartList.clear();
-
+	public static void updateCartList() {
+		CARTS.clear();
+		
 		List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(1);
 
-		nameValuePair.add(new BasicNameValuePair("function", "check_cart"));
+		nameValuePair.add(new BasicNameValuePair("function", "check_orders"));
 
 		JSONObject cartJSON = CustomHTTP.makePOST(
-				"http://23.21.158.161:4912/cart.php", nameValuePair);
-
-		float total = 0;
-		DecimalFormat df = new DecimalFormat("#0.00");
+				"http://23.21.158.161:4912/inventory.php", nameValuePair);
 
 		try {
-			JSONArray items = cartJSON.getJSONArray("items");
+			JSONArray items = cartJSON.getJSONArray("orders");
 
 			for (int i = 0; i < items.length(); i++) {
-				JSONObject item = items.getJSONObject(i);
+				JSONObject order = items.getJSONObject(i);
 
-				String name = item.getString("Name");
-				String quantity = item.getString("Quantity");
-				Float price = Float.parseFloat(item.getString("Price"));
-
-				HashMap<String, String> map = new HashMap<String, String>();
-				map.put("Name", name);
-				map.put("Quantity", quantity);
-				map.put("Price", "$" + df.format(price));
-				map.put("ItemID", item.getString("ItemID"));
-				total += price * Float.parseFloat(quantity);
-
-				cartList.add(map);
+				String remaining = order.getString("Items");
+				String orderID = order.getString("OrderID");
+				
+				addItem(new Cart(orderID,"Order ID: "+orderID+", Items remaining: "+remaining));
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
 	}
 }

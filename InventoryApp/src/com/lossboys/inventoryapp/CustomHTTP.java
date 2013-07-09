@@ -26,54 +26,54 @@ import android.util.Log;
 public class CustomHTTP {
 	private static CookieStore cookieStore = new BasicCookieStore();
 	private static HttpContext localContext = new BasicHttpContext();
-    	
-	private static boolean debugHTTP = false;
-	
-	public static JSONObject makePOST(String url,List<NameValuePair> nameValuePair){
+
+	private static boolean debugHTTP = true;
+
+	public static JSONObject makePOST(String url, List<NameValuePair> nameValuePair) {
 		localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
-        // Creating HTTP client
-        HttpClient httpClient = new DefaultHttpClient();
-        // Creating HTTP Post
-        HttpPost httpPost = new HttpPost(url);
-        
-        if(debugHTTP){
-	        Log.d("CustomHTTP URL",url);
-	        for (NameValuePair pair : nameValuePair) {
-	        	Log.d("CustomHTTP Param",pair.getName()+" = "+pair.getValue());
-	        }
-        }
-        
-        
-        // Url Encoding the POST parameters
-        try {
-            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
-        } catch (UnsupportedEncodingException e) {
-            // writing error to Log
-            e.printStackTrace();
-        }
- 
-        // Making HTTP Request
-        try {
-            HttpResponse response = httpClient.execute(httpPost,localContext);
-            String result = EntityUtils.toString(response.getEntity());
-            
-            // Writing response to log
-            // Log.d("Http Response: ", result);
-            try {
+		// Creating HTTP client
+		HttpClient httpClient = new DefaultHttpClient();
+		// Creating HTTP Post
+		HttpPost httpPost = new HttpPost(url);
+
+		if (debugHTTP) {
+			Log.d("CustomHTTP URL", url);
+			for (NameValuePair pair : nameValuePair) {
+				Log.d("CustomHTTP Param", pair.getName() + " = " + pair.getValue());
+			}
+		}
+
+		// Url Encoding the POST parameters
+		try {
+			httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+		} catch (UnsupportedEncodingException e) {
+			// writing error to Log
+			e.printStackTrace();
+		}
+
+		// Making HTTP Request
+		try {
+			HttpResponse response = httpClient.execute(httpPost, localContext);
+			String result = EntityUtils.toString(response.getEntity());
+
+			// Writing response to log
+			if(debugHTTP)
+				Log.d("Http Response: ", result);
+			try {
 				JSONObject resultJSON = (JSONObject) new JSONTokener(result).nextValue();
 				return resultJSON;
 			} catch (JSONException e) {
 				e.printStackTrace();
 				return null;
 			}
-        } catch (ClientProtocolException e) {
-            // writing exception to log
-            e.printStackTrace();
-            return null;
-        } catch (IOException e) {
-            // writing exception to log
-            e.printStackTrace();
-            return null;
-        }
+		} catch (ClientProtocolException e) {
+			// writing exception to log
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			// writing exception to log
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

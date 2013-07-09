@@ -77,7 +77,7 @@ public class InventoryLogin extends Activity {
 				// Building post parameters
 				// key and value pair
 				List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
-				nameValuePair.add(new BasicNameValuePair("ID", ID));
+				nameValuePair.add(new BasicNameValuePair("email", ID));
 				nameValuePair.add(new BasicNameValuePair("password", password));
 
 				JSONObject loginJSON = CustomHTTP.makePOST("http://23.21.158.161:4912/login.php", nameValuePair);

@@ -1,10 +1,24 @@
 package com.lossboys.inventoryapp;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.lossboys.inventoryapp.CartListContent;
@@ -25,6 +39,7 @@ public class CartDetailFragment extends Fragment {
 	 * The dummy content this fragment is presenting.
 	 */
 	private CartListContent.Cart mCart;
+	private ArrayList<HashMap<String, String>> itemList;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -44,6 +59,7 @@ public class CartDetailFragment extends Fragment {
 			mCart = CartListContent.CART_MAP.get(getArguments().getString(
 					ARG_ITEM_ID));
 		}
+		itemList = new ArrayList<HashMap<String, String>>();
 	}
 
 	@Override
@@ -57,6 +73,46 @@ public class CartDetailFragment extends Fragment {
 			((TextView) rootView.findViewById(R.id.cart_detail))
 					.setText(mCart.content);
 		}
+		
+		itemList.clear();
+
+		List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
+
+		nameValuePair.add(new BasicNameValuePair("function", "check_items"));
+		nameValuePair.add(new BasicNameValuePair("orderid", getArguments().getString(
+				ARG_ITEM_ID)));
+
+		JSONObject cartJSON = CustomHTTP.makePOST("http://23.21.158.161:4912/inventory.php", nameValuePair);
+
+		DecimalFormat df = new DecimalFormat("#0.00");
+
+		try {
+			JSONArray items = cartJSON.getJSONArray("items");
+
+			for (int i = 0; i < items.length(); i++) {
+				JSONObject item = items.getJSONObject(i);
+
+				String name = item.getString("Name");
+				String quantity = item.getString("Quantity");
+				Float price = Float.parseFloat(item.getString("Price"));
+
+				HashMap<String, String> map = new HashMap<String, String>();
+				map.put("Name", name);
+				map.put("Quantity", quantity);
+				map.put("Price", "$" + df.format(price));
+				map.put("ItemID", item.getString("ItemID"));
+
+				itemList.add(map);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		ListAdapter adapter = new SimpleAdapter(getActivity().getApplicationContext(), itemList, R.layout.cart_item_layout, new String[] { "Name", "Quantity", "Price",
+				"ItemID" }, new int[] { R.id.cartName, R.id.cartQuantity, R.id.cartPrice, R.id.cartItemID });
+
+		ListView listview = (ListView) rootView.findViewById(R.id.list);
+		listview.setAdapter(adapter);
 
 		return rootView;
 	}
