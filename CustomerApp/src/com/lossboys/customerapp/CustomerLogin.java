@@ -73,6 +73,7 @@ public class CustomerLogin extends Activity {
 				Context context = CustomerLogin.this;
 				CharSequence text = "";
 				int duration = Toast.LENGTH_SHORT;
+				boolean done = false;
 
 				// Building post parameters
 				// key and value pair
@@ -88,6 +89,7 @@ public class CustomerLogin extends Activity {
 						if (jsonResult.equals("false"))
 							text = "Invalid email or password!";
 						else {
+							done = true;
 							Intent i = new Intent(getApplicationContext(), com.lossboys.customerapp.dashboard.CustomerDashboard.class);
 							startActivity(i);
 							finish();
@@ -104,7 +106,8 @@ public class CustomerLogin extends Activity {
 				TextView toastTV = (TextView) toastLayout.getChildAt(0);
 				toastTV.setTextSize(20);
 				toast.setGravity(Gravity.CENTER, 0, 0);
-				toast.show();
+				if(!done)
+					toast.show();
 			}
 		});
 
