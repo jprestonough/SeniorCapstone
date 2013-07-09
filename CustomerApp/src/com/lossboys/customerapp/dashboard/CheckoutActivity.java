@@ -1,27 +1,39 @@
 package com.lossboys.customerapp.dashboard;
 
+import com.lossboys.customerapp.CustomHTTP;
 import com.lossboys.customerapp.R;
 import android.app.Activity;
 import android.os.Bundle;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-public class CheckoutActivity extends Activity implements OnItemSelectedListener {
+public class CheckoutActivity extends Activity {
 	/** Called when the activity is first created. */
 	EditText inputCardNumber;
 	EditText inputSecurityCode;
-	TextView checkoutErrorMsg;
+	TextView checkoutErrorMsg, cartTotal;
 	Button btn_next;
 
 	@Override
@@ -32,6 +44,7 @@ public class CheckoutActivity extends Activity implements OnItemSelectedListener
 		inputCardNumber = (EditText) findViewById(R.id.cardNumber);
 		inputSecurityCode = (EditText) findViewById(R.id.securityCode);
 		checkoutErrorMsg = (TextView) findViewById(R.id.checkout_error);
+		cartTotal = (TextView) findViewById(R.id.cartTotal);
 
 		// Button for Next
 		btn_next = (Button) findViewById(R.id.btnNext);
@@ -43,19 +56,13 @@ public class CheckoutActivity extends Activity implements OnItemSelectedListener
 		// Spinner element
 		Spinner cardExpYYYY_spinner = (Spinner) findViewById(R.id.cardexpYYYY_spinner);
 
-		// Spinner click listener
-		cardType_spinner.setOnItemSelectedListener(this);
-		// Spinner click listener
-		cardExpMM_spinner.setOnItemSelectedListener(this);
-		// Spinner click listener
-		cardExpYYYY_spinner.setOnItemSelectedListener(this);
-
 		// Spinner Drop down elements
 		List<String> cardTypes = new ArrayList<String>();
 		cardTypes.add("Visa");
 		cardTypes.add("Master Card");
 		cardTypes.add("Discover");
 		cardTypes.add("American Express");
+
 		// Spinner Drop down elements
 		List<String> cardExpMM = new ArrayList<String>();
 		cardExpMM.add("01");
@@ -70,6 +77,7 @@ public class CheckoutActivity extends Activity implements OnItemSelectedListener
 		cardExpMM.add("10");
 		cardExpMM.add("11");
 		cardExpMM.add("12");
+
 		// Spinner Drop down elements
 		List<String> cardExpYYYY = new ArrayList<String>();
 		cardExpYYYY.add("2013");
@@ -119,30 +127,48 @@ public class CheckoutActivity extends Activity implements OnItemSelectedListener
 
 			@Override
 			public void onClick(View view) {
-
-				String CardNumber = inputCardNumber.getText().toString();
-				String SecurityCode = inputSecurityCode.getText().toString();
-
-				Intent i = new Intent(getApplicationContext(), CheckoutActivity2.class);
-				startActivity(i);
+				String cardNumber = inputCardNumber.getText().toString();
+				String securityCode = inputSecurityCode.getText().toString();
+				
+				if (cardNumber.length() == 0 || securityCode.length() == 0){
+					Toast toast = Toast.makeText(CheckoutActivity.this, "Please fill out all information.", Toast.LENGTH_LONG);
+					LinearLayout toastLayout = (LinearLayout) toast.getView();
+					TextView toastTV = (TextView) toastLayout.getChildAt(0);
+					toastTV.setTextSize(20);
+					toast.setGravity(Gravity.CENTER, 0, 0);
+					toast.show();
+				}else {
+					Intent i = new Intent(getApplicationContext(), CheckoutActivity2.class);
+					startActivity(i);
+					finish();
+				}
 			}
 		});
 
+		List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(1);
+
+		nameValuePair.add(new BasicNameValuePair("function", "check_cart"));
+
+		JSONObject cartJSON = CustomHTTP.makePOST("http://23.21.158.161:4912/cart.php", nameValuePair);
+
+		float total = 0;
+		DecimalFormat df = new DecimalFormat("#0.00");
+
+		try {
+			JSONArray items = cartJSON.getJSONArray("items");
+
+			for (int i = 0; i < items.length(); i++) {
+				JSONObject item = items.getJSONObject(i);
+
+				String quantity = item.getString("Quantity");
+				Float price = Float.parseFloat(item.getString("Price"));
+
+				total += price * Float.parseFloat(quantity);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		cartTotal.setText("Total: $" + df.format(total));
 	}
-
-	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-		// On selecting a spinner item
-		String item = parent.getItemAtPosition(position).toString();
-
-		// Showing selected spinner item
-		Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-
-	}
-
-	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
