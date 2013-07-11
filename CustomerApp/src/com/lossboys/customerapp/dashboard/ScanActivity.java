@@ -1,5 +1,13 @@
 package com.lossboys.customerapp.dashboard;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
+
+import com.lossboys.customerapp.CustomHTTP;
 import com.lossboys.customerapp.CustomerCameraPreview;
 
 import com.lossboys.customerapp.R;
@@ -181,13 +189,29 @@ public class ScanActivity extends Activity {
 					barcodeScanned = true;
 					itemID = sym.getData();
 				}
+				
+				List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(1);
+				nameValuePair.add(new BasicNameValuePair("ItemID", itemID));
 
-				Intent i = new Intent(getApplicationContext(), com.lossboys.customerapp.dashboard.ProductActivity.class);
+				JSONObject scanJSON = CustomHTTP.makePOST("http://23.21.158.161:4912/get_item.php", nameValuePair);
+				
+				if (scanJSON != null) {
+					try {
+						if (scanJSON.isNull("Error")) {
+							Intent i = new Intent(getApplicationContext(), com.lossboys.customerapp.dashboard.ProductActivity.class);
 
-				i.putExtra("ItemID", itemID);
+							i.putExtra("ItemID", itemID);
 
-				startActivity(i);
-				finish();
+							startActivity(i);
+							finish();
+						} else {
+							scanText = (TextView) findViewById(R.id.scanText);
+							scanText.setText("Invalid code. Please rescan");
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
 			}
 		}
 	};
