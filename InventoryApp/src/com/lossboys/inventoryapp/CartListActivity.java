@@ -2,6 +2,7 @@ package com.lossboys.inventoryapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.FragmentActivity;
 
 /**
@@ -30,7 +31,15 @@ public class CartListActivity extends FragmentActivity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+			StrictMode.setThreadPolicy(policy);
+		}
+		
 		super.onCreate(savedInstanceState);
+
+		CartListContent.updateCartList();
+		
 		setContentView(R.layout.activity_cart_list);
 
 		if (findViewById(R.id.cart_detail_container) != null) {
