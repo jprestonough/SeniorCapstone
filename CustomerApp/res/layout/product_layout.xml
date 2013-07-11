@@ -21,14 +21,15 @@
 
             <ImageView
                 android:id="@+id/item_image"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
                 android:contentDescription="item image"
                 android:padding="10dp"
                 android:scaleType="fitCenter" />
 
             <TextView
                 android:id="@+id/item_name"
+                style="@android:style/TextAppearance.Medium"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/item_image"
@@ -46,52 +47,63 @@
                 android:textColor="#336699"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/quantityLabel"
-                android:layout_width="fill_parent"
+            <TextView 
+                android:id="@+id/item_availability"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/item_price"
                 android:layout_toRightOf="@+id/item_image"
-                android:text="Quantity:"
+                android:text="Availability:"
+                android:textColor="#336699"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/item_availability_color"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/item_availability"
+                android:layout_below="@+id/item_price"
+                android:text="Availability"
                 android:textColor="#336699" />
 
             <Button
                 android:id="@+id/btnAddtoCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/quantityLabel"
+                android:layout_below="@+id/item_availability"
                 android:layout_marginTop="5dip"
                 android:layout_toRightOf="@+id/item_image"
                 android:text="Add to Cart"
                 android:textColor="#000000"
                 android:textSize="13dp" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_below="@+id/item_image"
                 android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="fill_parent"
+                
+                <Button
+                    android:id="@+id/button_description"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dip"
-                    android:text="Department"
+                    android:text="Descript"
                     android:textColor="#336699" />
-
-                <TextView
-                    android:id="@+id/item_department"
-                    android:layout_width="fill_parent"
+                
+                <Button
+                    android:id="@+id/button_specification"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dip"
-                    android:textColor="#000000"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="fill_parent"
+                    android:text="Specs"
+                    android:textColor="#336699"
+                    android:layout_toRightOf="@+id/button_description" />
+                
+                <Button
+                    android:id="@+id/button_rating"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Description"
-                    android:textColor="#336699" />
+                    android:text="Rating"
+                    android:textColor="#336699"
+                    android:layout_toRightOf="@+id/button_specification" />
 
                 <TextView
                     android:id="@+id/item_description"
@@ -99,23 +111,10 @@
                     android:layout_height="wrap_content"
                     android:padding="10dip"
                     android:textColor="#000000"
-                    android:textStyle="bold" />
+                    android:textStyle="bold" 
+                    android:layout_below="@+id/button_description" />
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Quantity Available"
-                    android:textColor="#336699" />
-
-                <TextView
-                    android:id="@+id/item_quantity"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dip"
-                    android:textColor="#000000"
-                    android:textStyle="bold" />
-            </LinearLayout>
+            </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>
-
 </ScrollView>

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.lossboys.customerapp.CustomHTTP;
@@ -16,6 +17,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -28,9 +30,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ProductActivity extends Activity {
-	TextView itemName, itemDepartment, itemDescription, itemPrice, itemQuantity;
+	TextView itemName, itemDescription, itemPrice, itemQuantity, itemAvailability;
 	ImageView itemImage;
-	Button addToCart;
+	Button addToCart, buttonDescription, buttonSpecification, buttonRating;
 	ProgressDialog pd = null;
 
 	/** Called when the activity is first created. */
@@ -101,22 +103,60 @@ public class ProductActivity extends Activity {
 
 		protected void onPostExecute(Object result) {
 			itemName = (TextView) findViewById(R.id.item_name);
-			itemDepartment = (TextView) findViewById(R.id.item_department);
 			itemDescription = (TextView) findViewById(R.id.item_description);
 			itemPrice = (TextView) findViewById(R.id.item_price);
-			itemQuantity = (TextView) findViewById(R.id.item_quantity);
+			//itemQuantity = (TextView) findViewById(R.id.item_quantity);
+			itemAvailability = (TextView) findViewById(R.id.item_availability_color);
 			itemImage = (ImageView) findViewById(R.id.item_image);
+			buttonDescription = (Button) findViewById(R.id.button_description);
+			buttonSpecification = (Button) findViewById(R.id.button_specification);
+			buttonRating = (Button) findViewById(R.id.button_rating);
+			
+			int quantity;
 
-			JSONObject scanJSON = (JSONObject) result;
+			final JSONObject scanJSON = (JSONObject) result;
 
 			if (scanJSON != null) {
 				try {
 					if (scanJSON.isNull("Error")) {
 						itemName.setText(scanJSON.getString("Name"));
-						itemDepartment.setText(scanJSON.getString("Department"));
-						itemDescription.setText(scanJSON.getString("Description"));
+						//itemDescription.setText(scanJSON.getString("Description"));
 						itemPrice.setText("$" + scanJSON.getString("Price"));
-						itemQuantity.setText(scanJSON.getString("Quantity"));
+						itemDescription.setText(scanJSON.getString("Description"));
+						quantity = Integer.parseInt(scanJSON.getString("Quantity"));
+						if (quantity == 0) {
+				        	itemAvailability.setText("  Red");
+				        	itemAvailability.setTextColor(Color.RED);
+				        } else if (quantity < 5) {
+				        	itemAvailability.setText("  Yellow");
+				        	itemAvailability.setTextColor(Color.YELLOW);
+				        } else {
+				        	itemAvailability.setText("  Green");
+				        	itemAvailability.setTextColor(Color.GREEN);
+				        }
+						
+						buttonDescription.setOnClickListener(new View.OnClickListener() {
+						    public void onClick(View v) {
+						    	try {
+									itemDescription.setText(scanJSON.getString("Description"));
+								} catch (JSONException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						    }
+						});
+						
+						buttonSpecification.setOnClickListener(new View.OnClickListener() {
+							public void onClick(View v) {
+								itemDescription.setText("Dummy Specs\n Stuff stuff stuff \n stuff stuff stuff");
+							}
+						});
+						
+						buttonRating.setOnClickListener(new View.OnClickListener() {
+							public void onClick(View v) {
+								itemDescription.setText("five starts");
+							}
+						});
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
