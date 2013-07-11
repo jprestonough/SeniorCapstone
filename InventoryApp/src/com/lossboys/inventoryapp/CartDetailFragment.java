@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,6 +74,14 @@ public class CartDetailFragment extends Fragment {
 			((TextView) rootView.findViewById(R.id.cart_detail))
 					.setText(mCart.content);
 		}
+
+		return rootView;
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState){
+		
+		super.onActivityCreated(savedInstanceState);
 		
 		itemList.clear();
 
@@ -108,12 +117,11 @@ public class CartDetailFragment extends Fragment {
 			e.printStackTrace();
 		}
 
-		ListAdapter adapter = new SimpleAdapter(getActivity().getApplicationContext(), itemList, R.layout.cart_item_layout, new String[] { "Name", "Quantity", "Price",
+		ListView listview = (ListView) getActivity().findViewById(R.id.list);
+		
+		ListAdapter adapter = new SimpleAdapter(listview.getContext(), itemList, R.layout.cart_item_layout, new String[] { "Name", "Quantity", "Price",
 				"ItemID" }, new int[] { R.id.cartName, R.id.cartQuantity, R.id.cartPrice, R.id.cartItemID });
 
-		ListView listview = (ListView) rootView.findViewById(R.id.list);
 		listview.setAdapter(adapter);
-
-		return rootView;
 	}
 }
