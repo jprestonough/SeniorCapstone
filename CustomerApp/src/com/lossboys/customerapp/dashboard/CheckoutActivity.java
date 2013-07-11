@@ -131,7 +131,7 @@ public class CheckoutActivity extends Activity {
 				String securityCode = inputSecurityCode.getText().toString();
 				
 				if (cardNumber.length() == 0 || securityCode.length() == 0){
-					Toast toast = Toast.makeText(CheckoutActivity.this, "Please fill out all information.", Toast.LENGTH_LONG);
+					Toast toast = Toast.makeText(CheckoutActivity.this, "Please fill out all information.", Toast.LENGTH_SHORT);
 					LinearLayout toastLayout = (LinearLayout) toast.getView();
 					TextView toastTV = (TextView) toastLayout.getChildAt(0);
 					toastTV.setTextSize(20);
@@ -157,6 +157,16 @@ public class CheckoutActivity extends Activity {
 		try {
 			JSONArray items = cartJSON.getJSONArray("items");
 
+			if(items.length() == 0){
+				Toast toast = Toast.makeText(CheckoutActivity.this, "Your cart is empty.", Toast.LENGTH_SHORT);
+				LinearLayout toastLayout = (LinearLayout) toast.getView();
+				TextView toastTV = (TextView) toastLayout.getChildAt(0);
+				toastTV.setTextSize(20);
+				toast.setGravity(Gravity.CENTER, 0, 0);
+				toast.show();
+				finish();
+			}
+			
 			for (int i = 0; i < items.length(); i++) {
 				JSONObject item = items.getJSONObject(i);
 

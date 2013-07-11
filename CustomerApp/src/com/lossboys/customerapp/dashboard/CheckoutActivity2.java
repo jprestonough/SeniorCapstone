@@ -79,7 +79,7 @@ public class CheckoutActivity2 extends Activity {
 				String cardAddress = inputCardAddress.getText().toString();
 
 				if (cardName.length() == 0 || cardAddress.length() == 0) {
-					Toast toast = Toast.makeText(CheckoutActivity2.this, "Please fill out all information.", Toast.LENGTH_LONG);
+					Toast toast = Toast.makeText(CheckoutActivity2.this, "Please fill out all information.", Toast.LENGTH_SHORT);
 					LinearLayout toastLayout = (LinearLayout) toast.getView();
 					TextView toastTV = (TextView) toastLayout.getChildAt(0);
 					toastTV.setTextSize(20);
@@ -98,7 +98,7 @@ public class CheckoutActivity2 extends Activity {
 										.makeText(
 												CheckoutActivity2.this,
 												"Your order has been received. You will receive a confirmation email and a notification when your order is ready for pickup!",
-												Toast.LENGTH_LONG);
+												Toast.LENGTH_SHORT);
 								LinearLayout toastLayout = (LinearLayout) toast.getView();
 								TextView toastTV = (TextView) toastLayout.getChildAt(0);
 								toastTV.setTextSize(20);
