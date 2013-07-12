@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import com.lossboys.customerapp.CustomHTTP;
 import com.lossboys.customerapp.R;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -21,18 +22,23 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+@SuppressLint("NewApi")
 public class ProductActivity extends Activity {
 	TextView itemName, itemDescription, itemPrice, itemQuantity, itemAvailability;
 	ImageView itemImage;
 	Button addToCart, buttonDescription, buttonSpecification, buttonRating;
+	RatingBar rating;
 	ProgressDialog pd = null;
 
 	/** Called when the activity is first created. */
@@ -111,6 +117,7 @@ public class ProductActivity extends Activity {
 			buttonDescription = (Button) findViewById(R.id.button_description);
 			buttonSpecification = (Button) findViewById(R.id.button_specification);
 			buttonRating = (Button) findViewById(R.id.button_rating);
+			rating = (RatingBar) findViewById(R.id.ratingBar);
 			
 			int quantity;
 
@@ -124,6 +131,16 @@ public class ProductActivity extends Activity {
 						itemPrice.setText("$" + scanJSON.getString("Price"));
 						itemDescription.setText(scanJSON.getString("Description"));
 						quantity = Integer.parseInt(scanJSON.getString("Quantity"));
+						//rating is no longer clickable
+						rating.setOnTouchListener(new OnTouchListener() {
+							@Override
+							public boolean onTouch(View v, MotionEvent event) {
+								// TODO Auto-generated method stub
+								return true;
+							}
+					    });
+						rating.setRating(5);
+						rating.setAlpha(0);
 						if (quantity == 0) {
 				        	itemAvailability.setText("  Red");
 				        	itemAvailability.setTextColor(Color.RED);
@@ -139,22 +156,23 @@ public class ProductActivity extends Activity {
 						    public void onClick(View v) {
 						    	try {
 									itemDescription.setText(scanJSON.getString("Description"));
+									rating.setAlpha(0);
 								} catch (JSONException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
 						    }
 						});
-						
 						buttonSpecification.setOnClickListener(new View.OnClickListener() {
 							public void onClick(View v) {
 								itemDescription.setText("Dummy Specs\n Stuff stuff stuff \n stuff stuff stuff");
+								rating.setAlpha(0);
 							}
 						});
-						
 						buttonRating.setOnClickListener(new View.OnClickListener() {
 							public void onClick(View v) {
-								itemDescription.setText("five starts");
+								itemDescription.setText("");
+								rating.setAlpha(1);
 							}
 						});
 					}

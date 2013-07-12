@@ -114,6 +114,15 @@
                     android:textStyle="bold" 
                     android:layout_below="@+id/button_description" />
 
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignTop="@+id/item_description" 
+                    android:alpha="0" 
+                    android:clickable="false"/>
+
             </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>
