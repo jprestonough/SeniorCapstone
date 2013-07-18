@@ -1,5 +1,6 @@
 package com.lossboys.customerapp;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -31,6 +32,10 @@ public class CustomerLogin extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		ActionBar bar = this.getActionBar();
+		bar.hide();
+		
 		if (android.os.Build.VERSION.SDK_INT > 9) {
 			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 			StrictMode.setThreadPolicy(policy);
@@ -111,6 +116,8 @@ public class CustomerLogin extends Activity {
 			}
 		});
 
+		
+		
 		btnLinkToRegister.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				Intent i = new Intent(getApplicationContext(), CustomerRegister.class);

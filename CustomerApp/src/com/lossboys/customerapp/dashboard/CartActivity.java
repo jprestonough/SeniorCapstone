@@ -14,34 +14,95 @@ import org.json.JSONObject;
 import com.lossboys.customerapp.CustomHTTP;
 import com.lossboys.customerapp.R;
 
+import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CartActivity extends ListActivity {
+public class CartActivity extends ListActivity  {
 	TextView totalView;
 	ArrayList<HashMap<String, String>> itemList;
 	Button checkout;
-
+	
+	//actionbar dropdown
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main, menu);
+	    //setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW)
+	    return true;
+	    
+	}
+	
+	//actionbar stuff (listener)
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		System.out.println(item.getItemId());
+	    switch (item.getItemId()) {
+	        case android.R.id.home:
+	            // app icon in action bar clicked; go home
+	            Intent intent = new Intent(this, CustomerDashboard.class);
+	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	            startActivity(intent);
+	            return true;
+	            
+	        case R.id.actionbar_logout:
+	        	List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(0);
+				CustomHTTP.makePOST("http://23.21.158.161:4912/logout.php", nameValuePair);
+	            Intent intnt = new Intent(getApplicationContext(), com.lossboys.customerapp.CustomerLogin.class);
+				intnt.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
+	            intnt.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK );
+				startActivity(intnt);
+				finish();
+	        	return true;
+	        	
+	        case R.id.actionbar_settings:
+	        	Intent i = new Intent(getApplicationContext(), AccountActivity.class);
+				startActivity(i);
+	        	return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
+		
+		//actionbar stuff
+		ActionBar bar = this.getActionBar();
+		bar.setHomeButtonEnabled(true);
+		bar.setDisplayShowTitleEnabled(false);
+		bar.setDisplayHomeAsUpEnabled(true);
+
+		
 		setContentView(R.layout.cart_layout);
 
 		totalView = (TextView) findViewById(R.id.cartTotal);
@@ -54,7 +115,6 @@ public class CartActivity extends ListActivity {
 				Intent i = new Intent(getApplicationContext(), com.lossboys.customerapp.dashboard.CheckoutActivity.class);
 
 				startActivity(i);
-				finish();
 			}
 		});
 
@@ -63,7 +123,11 @@ public class CartActivity extends ListActivity {
 		updateCart();
 
 		getListView().setItemsCanFocus(true);
+		
+		
+		
 	}
+	
 
 	private void updateCart() {
 		itemList.clear();

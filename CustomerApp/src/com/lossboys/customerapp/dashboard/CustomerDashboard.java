@@ -4,10 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
+
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 
 import com.lossboys.customerapp.CustomHTTP;
@@ -17,9 +23,47 @@ public class CustomerDashboard extends Activity {
 	Button btnLogout;
 
 	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main, menu);
+	    //setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW)
+	    return true;
+	    
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		System.out.println(item.getItemId());
+	    switch (item.getItemId()) {
+	            
+	        case R.id.actionbar_logout:
+	        	List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(0);
+				CustomHTTP.makePOST("http://23.21.158.161:4912/logout.php", nameValuePair);
+	            Intent intnt = new Intent(getApplicationContext(), com.lossboys.customerapp.CustomerLogin.class);
+				intnt.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
+	            intnt.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK );
+				startActivity(intnt);
+				finish();
+	        	return true;
+	        	
+	        case R.id.actionbar_settings:
+	        	Intent i = new Intent(getApplicationContext(), AccountActivity.class);
+				startActivity(i);
+	        	return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
-
+		
+		ActionBar bar = this.getActionBar();
+		bar.setDisplayShowTitleEnabled(false);
+		
+		
 		setContentView(R.layout.dashboard_layout);
 
 		/**
@@ -82,6 +126,7 @@ public class CustomerDashboard extends Activity {
 			}
 		});
 
+		
 		// Listening to Places button click
 		btn_checkout.setOnClickListener(new View.OnClickListener() {
 
@@ -92,7 +137,8 @@ public class CustomerDashboard extends Activity {
 				startActivity(i);
 			}
 		});
-
+		
+		
 		// Listening to Events button click
 		btn_account.setOnClickListener(new View.OnClickListener() {
 

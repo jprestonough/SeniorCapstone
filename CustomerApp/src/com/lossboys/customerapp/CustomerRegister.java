@@ -7,6 +7,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -33,6 +34,10 @@ public class CustomerRegister extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		
+		ActionBar bar = this.getActionBar();
+		bar.hide();
+		
 		super.onCreate(savedInstanceState);
 		// Set View to register.xml
 		setContentView(R.layout.customer_register);

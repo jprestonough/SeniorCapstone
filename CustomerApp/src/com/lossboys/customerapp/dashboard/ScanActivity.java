@@ -12,6 +12,7 @@ import com.lossboys.customerapp.CustomerCameraPreview;
 
 import com.lossboys.customerapp.R;
 
+import android.app.ActionBar;
 import android.app.Activity;
 
 import android.content.Intent;
@@ -20,6 +21,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.hardware.Camera;
@@ -60,12 +62,36 @@ public class ScanActivity extends Activity {
 	static {
 		System.loadLibrary("iconv");
 	}
+	
+	//Actionbar stuff
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		System.out.println(item.getItemId());
+	    switch (item.getItemId()) {
+	        case android.R.id.home:
+	            // app icon in action bar clicked; go home
+	            Intent intent = new Intent(this, CustomerDashboard.class);
+	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	            startActivity(intent);
+	            return true;
+	            
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.scan_layout);
+		
+		//Actionbar stuff
+		ActionBar bar = this.getActionBar();
+		bar.setHomeButtonEnabled(true);
+		bar.setDisplayShowTitleEnabled(false);
+		bar.setDisplayHomeAsUpEnabled(true);
+
 
 		// setContentView(R.layout.customer_camera);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -201,6 +227,7 @@ public class ScanActivity extends Activity {
 							Intent i = new Intent(getApplicationContext(), com.lossboys.customerapp.dashboard.ProductActivity.class);
 
 							i.putExtra("ItemID", itemID);
+							i.putExtra("Scan" , true);
 
 							startActivity(i);
 							finish();
