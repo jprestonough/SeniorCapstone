@@ -12,11 +12,16 @@ import org.json.JSONObject;
 
 import com.lossboys.customerapp.CustomHTTP;
 import com.lossboys.customerapp.R;
+
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import android.widget.Button;
@@ -33,11 +38,57 @@ public class CheckoutActivity2 extends Activity {
 	EditText inputCardName;
 	EditText inputCardAddress;
 	TextView cartTotal;
+	
+	//actionbar dropdown
+		@Override
+		public boolean onCreateOptionsMenu(Menu menu) {
+		    MenuInflater inflater = getMenuInflater();
+		    inflater.inflate(R.menu.main, menu);
+		    //setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW)
+		    return true;
+		    
+		}
+		
+		//actionbar stuff (listener)
+		@Override
+		public boolean onOptionsItemSelected(MenuItem item) {
+			System.out.println(item.getItemId());
+		    switch (item.getItemId()) {
+		        case android.R.id.home:
+		            // app icon in action bar clicked; go home
+		        	onBackPressed();
+		            return true;
+		            
+		        case R.id.actionbar_logout:
+		        	List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(0);
+					CustomHTTP.makePOST("http://23.21.158.161:4912/logout.php", nameValuePair);
+		            Intent intnt = new Intent(getApplicationContext(), com.lossboys.customerapp.CustomerLogin.class);
+					intnt.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
+		            intnt.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK );
+					startActivity(intnt);
+					finish();
+		        	return true;
+		        	
+		        case R.id.actionbar_settings:
+		        	Intent i = new Intent(getApplicationContext(), AccountActivity.class);
+					startActivity(i);
+		        	return true;
+		        default:
+		            return super.onOptionsItemSelected(item);
+		    }
+		}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.checkout2_layout);
+		
+		//actionbar stuff
+		ActionBar bar = this.getActionBar();
+		bar.setHomeButtonEnabled(true);
+		bar.setDisplayShowTitleEnabled(false);
+		bar.setDisplayHomeAsUpEnabled(true);
+
 
 		inputCardName = (EditText) findViewById(R.id.cardName);
 		inputCardAddress = (EditText) findViewById(R.id.cardAddress);
@@ -104,6 +155,9 @@ public class CheckoutActivity2 extends Activity {
 								toastTV.setTextSize(20);
 								toast.setGravity(Gravity.CENTER, 0, 0);
 								toast.show();
+								Intent intent = new Intent(CheckoutActivity2.this, CustomerDashboard.class);
+					            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					            startActivity(intent);
 								finish();
 							} else
 								Toast.makeText(CheckoutActivity2.this, "Server error.", Toast.LENGTH_SHORT).show();

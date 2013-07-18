@@ -5,7 +5,7 @@
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
@@ -16,6 +16,23 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    	<item name="android:actionBarStyle">@style/AppTheme.ActionBar</item> 
+    	<item name="android:actionDropDownStyle">@style/AppTheme.ActionBar.Drop</item>
+    </style>
+    
+    <style name="AppTheme.ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+            <item name="android:background">@drawable/actionbar_background</item> <!-- @color/bg -->
+            
+    </style>
+    
+    <!-- style the items within the overflow menu
+	<style name="AppTheme.ActionBar.Drop" parent="android:style/Widget.Holo.">
+	    <item name="android:itemBackground">@color/bg</item>
+	</style> -->
+	
+	<style name="AppTheme.ActionBar.Drop" parent="android:style/Widget.Holo.Light.ListPopupWindow">
+    <!-- <item name="android:background">#B2B2B2</item> -->
+    <item name="android:popupBackground">#B2B2B2</item>
     </style>
 
     <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">

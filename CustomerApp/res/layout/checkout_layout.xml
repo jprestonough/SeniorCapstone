@@ -12,9 +12,7 @@
         <!-- Header Starts -->
 
 
-        <!-- Include Action Bar -->
-
-        <include layout="@layout/actionbar_layout" />
+        
         <!-- Header Ends -->
         <!-- Footer Start -->
 

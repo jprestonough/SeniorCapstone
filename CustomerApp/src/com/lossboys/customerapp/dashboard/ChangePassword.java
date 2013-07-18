@@ -10,10 +10,12 @@ import org.json.JSONObject;
 import com.lossboys.customerapp.CustomHTTP;
 import com.lossboys.customerapp.R;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,11 +29,34 @@ public class ChangePassword extends Activity {
 	EditText confirmPassword;
 	TextView changePasswordErrorMsg;
 
+	//actionbar stuff (listener)
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		System.out.println(item.getItemId());
+	    switch (item.getItemId()) {
+	        case android.R.id.home:
+	            // app icon in action bar clicked; go home
+	        	onBackPressed();
+	            return true;
+	            
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.change_password_layout);
 
+		//actionbar stuff
+		ActionBar bar = this.getActionBar();
+		bar.setHomeButtonEnabled(true);
+		bar.setDisplayShowTitleEnabled(false);
+		bar.setDisplayHomeAsUpEnabled(true);
+
+		
 		newPassword = (EditText) findViewById(R.id.new_password);
 		confirmPassword = (EditText) findViewById(R.id.new_confpassword);
 		btnApply = (Button) findViewById(R.id.btnApply);

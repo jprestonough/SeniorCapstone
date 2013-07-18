@@ -2,6 +2,8 @@ package com.lossboys.customerapp.dashboard;
 
 import com.lossboys.customerapp.CustomHTTP;
 import com.lossboys.customerapp.R;
+
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 
@@ -18,6 +20,9 @@ import org.json.JSONObject;
 
 import android.content.Intent;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -36,10 +41,57 @@ public class CheckoutActivity extends Activity {
 	TextView checkoutErrorMsg, cartTotal;
 	Button btn_next;
 
+	//actionbar dropdown
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main, menu);
+	    //setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW)
+	    return true;
+	    
+	}
+	
+	//actionbar stuff (listener)
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		System.out.println(item.getItemId());
+	    switch (item.getItemId()) {
+	        case android.R.id.home:
+	            // app icon in action bar clicked; go home
+	        	onBackPressed();
+	            return true;
+	            
+	        case R.id.actionbar_logout:
+	        	List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(0);
+				CustomHTTP.makePOST("http://23.21.158.161:4912/logout.php", nameValuePair);
+	            Intent intnt = new Intent(getApplicationContext(), com.lossboys.customerapp.CustomerLogin.class);
+				intnt.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
+	            intnt.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK );
+				startActivity(intnt);
+				finish();
+	        	return true;
+	        	
+	        case R.id.actionbar_settings:
+	        	Intent i = new Intent(getApplicationContext(), AccountActivity.class);
+				startActivity(i);
+	        	return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.checkout_layout);
+		
+		//actionbar stuff
+		ActionBar bar = this.getActionBar();
+		bar.setHomeButtonEnabled(true);
+		bar.setDisplayShowTitleEnabled(false);
+		bar.setDisplayHomeAsUpEnabled(true);
+
 
 		inputCardNumber = (EditText) findViewById(R.id.cardNumber);
 		inputSecurityCode = (EditText) findViewById(R.id.securityCode);
@@ -140,7 +192,6 @@ public class CheckoutActivity extends Activity {
 				}else {
 					Intent i = new Intent(getApplicationContext(), CheckoutActivity2.class);
 					startActivity(i);
-					finish();
 				}
 			}
 		});

@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:background="@color/bg" >
 
-        <include layout="@layout/actionbar_layout"/>
+        
         <!-- Footer Start -->
 
 

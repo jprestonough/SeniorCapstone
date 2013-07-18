@@ -1,8 +1,56 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!-- <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/ActionBarCompat"
-    android:id="@+id/banner">"
+    android:id="@+id/banner"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="40dp">-->
+    
+    <!-- actionBarLayout -->
+	<RelativeLayout
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+   	    android:id="@+id/banner" 
+   	    style="@style/ActionBarCompat"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal" > 
+        
+	    <LinearLayout
+	   	    android:id="@+id/btn_home_wrapper"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:layout_alignParentLeft="true" 
+	        android:orientation="horizontal"> 
+	    
+			<ImageButton
+	            android:id="@+id/btn_home"
+	            android:layout_width="wrap_content"
+	            android:layout_height="30dp"
+	            android:background="@null"
+	            android:onClick="goToDash"
+	            android:scaleType="fitCenter"
+	            android:src="@drawable/logo" />
+		</LinearLayout>
+		
+	    <LinearLayout
+	   	    android:id="@+id/actionbar_spinner_wrapper"
+	        android:layout_width="40dp"
+	        android:layout_height="fill_parent"
+	        android:layout_alignParentRight="true"
+	        android:layout_centerVertical="true" 
+	        android:orientation="horizontal"> 
+			<Spinner
+			    android:id="@+id/actionbar_spinner"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content" 
+				android:text="test" />
+		</LinearLayout>
+		
+    </RelativeLayout>    
+    
+ <!--
  
-    <ImageView
+ <ImageView
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
@@ -10,7 +58,106 @@
         android:clickable="false"
         android:scaleType="fitCenter"
         android:src="@drawable/logo" />
- 
+        
+   	<LinearLayout
+   	    android:id="@+id/actionBarLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" > 
+        
+		<ImageButton
+            android:id="@+id/btn_home"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:onClick="goToDash"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo" />
+		
+    </LinearLayout>
     
-     
-</LinearLayout>
+    
+    
+ 	
+    
+
+
+    <TextView
+        android:id="@+id/cartName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/linearLayout1"
+        android:textColor="@color/bg"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/cartItemID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
+
+    
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" >
+
+        
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:text="" />
+
+        <ImageButton
+            android:id="@+id/btnRemove"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@null"
+            android:onClick="removeHandler"
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_menu_close_clear_cancel" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/cartName"
+        android:paddingTop="5dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="5dp"
+            android:text="Qty:" />
+
+        <TextView
+            android:id="@+id/cartQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="5dp"
+            android:text="Total:" />
+
+        <TextView
+            android:id="@+id/cartPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"/>
+            
+    </LinearLayout>
+    
+    
+    
+    </RelativeLayout>-->
+

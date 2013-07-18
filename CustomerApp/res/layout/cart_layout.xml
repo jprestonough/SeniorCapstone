@@ -12,8 +12,7 @@
         android:layout_below="@id/banner"
         android:background="@color/white" />
 
-    <include layout="@layout/actionbar_layout" />
-    
+   
     <RelativeLayout
         android:id="@id/cartTotalLayout"
         style="@style/CartFooter"
