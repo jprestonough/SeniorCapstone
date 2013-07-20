@@ -4,6 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
+import android.view.Gravity;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * An activity representing a list of Carts. This activity has different
@@ -82,5 +87,20 @@ public class CartListActivity extends FragmentActivity implements
 			detailIntent.putExtra(CartDetailFragment.ARG_ITEM_ID, id);
 			startActivity(detailIntent);
 		}
+	}
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(data == null){
+			Log.d("scanid","null");
+			return;
+		}
+		Toast toast = Toast.makeText(CartListActivity.this, data.getStringExtra("ItemID"), Toast.LENGTH_SHORT);
+		LinearLayout toastLayout = (LinearLayout) toast.getView();
+		TextView toastTV = (TextView) toastLayout.getChildAt(0);
+		toastTV.setTextSize(20);
+		toast.setGravity(Gravity.CENTER, 0, 0);
+		toast.show();
+		
+		Log.d("scanid",data.getStringExtra("ItemID"));
 	}
 }

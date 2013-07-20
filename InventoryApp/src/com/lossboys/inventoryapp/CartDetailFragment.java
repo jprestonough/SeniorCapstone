@@ -11,16 +11,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lossboys.inventoryapp.CartListContent;
 
@@ -61,6 +66,8 @@ public class CartDetailFragment extends Fragment {
 					ARG_ITEM_ID));
 		}
 		itemList = new ArrayList<HashMap<String, String>>();
+		
+
 	}
 
 	@Override
@@ -71,8 +78,16 @@ public class CartDetailFragment extends Fragment {
 
 		// Show the dummy content as text in a TextView.
 		if (mCart != null) {
-			((TextView) rootView.findViewById(R.id.cart_detail))
-					.setText(mCart.content);
+			//((TextView) rootView.findViewById(R.id.cart_detail))
+			//		.setText(mCart.content);
+			Button btn_scan = (Button) rootView.findViewById(R.id.scanButton);
+			btn_scan.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent i = new Intent(getActivity().getApplicationContext(), ScanActivity.class);
+					startActivityForResult(i,1);
+				}
+			});
 		}
 
 		return rootView;
@@ -124,4 +139,6 @@ public class CartDetailFragment extends Fragment {
 
 		listview.setAdapter(adapter);
 	}
+	
+
 }
