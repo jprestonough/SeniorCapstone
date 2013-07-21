@@ -13,7 +13,8 @@
             android:layout_height="fill_parent"
             android:layout_above="@id/FooterLayout"
             android:layout_below="@id/banner"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:listSelector="@android:color/transparent" />
 
         <RelativeLayout
             android:id="@+id/FooterLayout"

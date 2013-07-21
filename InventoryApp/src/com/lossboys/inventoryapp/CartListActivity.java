@@ -1,10 +1,16 @@
 package com.lossboys.inventoryapp;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -91,16 +97,46 @@ public class CartListActivity extends FragmentActivity implements
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if(data == null){
-			Log.d("scanid","null");
 			return;
 		}
-		Toast toast = Toast.makeText(CartListActivity.this, data.getStringExtra("ItemID"), Toast.LENGTH_SHORT);
+		
+		String itemID = data.getStringExtra("ItemID");
+		String orderID = data.getStringExtra("orderID");
+		
+		List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(3);
+		nameValuePair.add(new BasicNameValuePair("function", "pick_item"));
+		nameValuePair.add(new BasicNameValuePair("orderid", orderID));
+		nameValuePair.add(new BasicNameValuePair("itemid", itemID));
+		JSONObject checkJSON = CustomHTTP.makePOST("http://23.21.158.161:4912/inventory.php", nameValuePair);
+		
+		String text = "Server error";
+		
+		if (checkJSON != null) {
+			try {
+				String jsonResult = checkJSON.getString("error");
+
+				if (jsonResult.equals("false")) {
+					text = "Item added";
+				}else if (jsonResult.equals("done")) {
+					text = "Warning: Item is already fulfilled.";
+				}else if (jsonResult.equals("invalid")) {
+					text = "Warning: Item is not in order.";
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		Toast toast = Toast.makeText(CartListActivity.this, text, Toast.LENGTH_SHORT);
 		LinearLayout toastLayout = (LinearLayout) toast.getView();
 		TextView toastTV = (TextView) toastLayout.getChildAt(0);
 		toastTV.setTextSize(20);
 		toast.setGravity(Gravity.CENTER, 0, 0);
 		toast.show();
 		
-		Log.d("scanid",data.getStringExtra("ItemID"));
+		CartDetailFragment f = (CartDetailFragment)getSupportFragmentManager().findFragmentById(R.id.cart_detail_container);
+		f.updateList();		
+		
+		CartListContent.updateCartList();
 	}
 }

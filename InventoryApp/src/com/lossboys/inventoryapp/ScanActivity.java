@@ -46,6 +46,7 @@ public class ScanActivity extends Activity {
 	ImageScanner scanner;
 
 	String itemID;
+	String orderID;
 
 	private Camera mCamera;
 	private InventoryCameraPreview mPreview;
@@ -63,6 +64,8 @@ public class ScanActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.scan_layout);
+		
+		orderID = getIntent().getStringExtra("orderID");
 				
 		//Actionbar stuff
 		ActionBar bar = this.getActionBar();
@@ -157,6 +160,7 @@ public class ScanActivity extends Activity {
 				
 				Intent returnIntent = new Intent();
 				returnIntent.putExtra("ItemID", itemID);
+				returnIntent.putExtra("orderID", orderID);
 				if (getParent() == null) {
 				    setResult(Activity.RESULT_OK, returnIntent);
 				} else {

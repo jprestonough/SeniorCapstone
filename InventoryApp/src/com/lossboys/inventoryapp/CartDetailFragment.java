@@ -15,18 +15,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.lossboys.inventoryapp.CartListContent;
 
 /**
@@ -73,6 +68,8 @@ public class CartDetailFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		final String orderID = mCart.orderID;
+		
 		View rootView = inflater.inflate(R.layout.fragment_cart_detail,
 				container, false);
 
@@ -85,6 +82,7 @@ public class CartDetailFragment extends Fragment {
 				@Override
 				public void onClick(View view) {
 					Intent i = new Intent(getActivity().getApplicationContext(), ScanActivity.class);
+					i.putExtra("orderID", orderID);
 					startActivityForResult(i,1);
 				}
 			});
@@ -95,9 +93,11 @@ public class CartDetailFragment extends Fragment {
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState){
-		
 		super.onActivityCreated(savedInstanceState);
-		
+		updateList();
+	}
+	
+	public void updateList(){
 		itemList.clear();
 
 		List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
@@ -138,7 +138,11 @@ public class CartDetailFragment extends Fragment {
 				"ItemID" }, new int[] { R.id.cartName, R.id.cartQuantity, R.id.cartPrice, R.id.cartItemID });
 
 		listview.setAdapter(adapter);
-	}
-	
 
+//		for(int i = 0;i< itemList.size(); i++){
+//			if(itemList.get(i).get("Quantity").equals("0"))
+//				listview.getChildAt(0).setEnabled(false);
+//		}
+		//itemList.get(position).get("Quantity").equals("0")
+	}
 }

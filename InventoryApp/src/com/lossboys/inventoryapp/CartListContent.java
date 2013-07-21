@@ -47,10 +47,12 @@ public class CartListContent {
 	public static class Cart {
 		public String id;
 		public String content;
+		public String orderID;
 
-		public Cart(String id, String content) {
+		public Cart(String id, String content, String orderID) {
 			this.id = id;
 			this.content = content;
+			this.orderID = orderID;
 		}
 
 		@Override
@@ -78,7 +80,7 @@ public class CartListContent {
 				String remaining = order.getString("Items");
 				String orderID = order.getString("OrderID");
 				
-				addItem(new Cart(orderID,"Order ID: "+orderID+", Items remaining: "+remaining));
+				addItem(new Cart(orderID,"Order ID: "+orderID+", Items remaining: "+remaining,orderID));
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();

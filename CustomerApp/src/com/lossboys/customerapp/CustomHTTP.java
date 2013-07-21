@@ -27,7 +27,7 @@ public class CustomHTTP {
 	private static CookieStore cookieStore = new BasicCookieStore();
 	private static HttpContext localContext = new BasicHttpContext();
 
-	private static boolean debugHTTP = false;
+	private static boolean debugHTTP = true;
 
 	public static JSONObject makePOST(String url, List<NameValuePair> nameValuePair) {
 		localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
