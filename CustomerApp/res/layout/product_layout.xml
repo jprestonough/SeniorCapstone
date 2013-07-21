@@ -71,8 +71,8 @@
                 android:layout_marginTop="5dip"
                 android:layout_toRightOf="@+id/item_image"
                 android:text="Add to Cart"
-                android:textColor="#000000"
-                android:textSize="13dp" />
+                android:textColor="@color/bright"
+                android:textSize="18dp" />
 
             <RelativeLayout
                 android:layout_width="fill_parent"
@@ -84,7 +84,7 @@
                     android:id="@+id/button_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Descript"
+                    android:text="Description"
                     android:textColor="#336699" />
                 
                 <Button

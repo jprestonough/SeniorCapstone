@@ -7,7 +7,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingTop="10dip"
-        android:text="The Loss Boys"
+        android:text="@string/TheLossBoys"
         android:textColor="#606060" />
 
 </LinearLayout>
