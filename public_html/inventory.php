@@ -115,7 +115,6 @@ if(!empty($_POST['function'])){
 			    $data = $stmt->fetchAll();
 
 			if(count($data) == 0){
-				echo '{"error":"orderdone"}';
 			   $message = "Your order has been completed. Please pick it up at the checkout counter.";
 
 			   smtpmailer(getEmail($dbh,$_POST['orderid']), 'thelossboys@gmail.com', 'Loss', 'Order Completed', $message);
